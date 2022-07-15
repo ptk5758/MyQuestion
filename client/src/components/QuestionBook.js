@@ -15,23 +15,23 @@ class QuestionBook extends Component
                 <div className='box-right'>&nbsp;</div>
             </div>
             <div className='questionbook'>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
-                <div className='book'>
-                    <span>대충 책제목</span>
+                <div className='item-box'>
+                    <span className='book'>대충 책제목</span>
                 </div>
             </div>
         </div>

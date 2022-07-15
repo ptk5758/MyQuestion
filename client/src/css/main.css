@@ -1,7 +1,11 @@
+.showBorder{ border: 1px solid#000000; }
+
 .header {display: flex; justify-content: space-between; padding: 0.8rem; border-bottom: 2px solid#000000;}
 .header > .box-left {flex: 1;}
 .header > .title {flex: 5; display: flex; justify-content: center; align-items: center;}
 .header > .title > span {font-weight: bold; font-size: 28px;}
 .header > .box-right {flex: 1;}
 
-.questionbook {display: grid; grid-template-columns: 30% 30% 30%;}
+.questionbook { display: flex; flex-wrap: wrap; margin-top: 2.2rem;}
+.questionbook > .item-box { width: 50%; display: flex; justify-content: center; margin-bottom: 2.8rem;}
+.questionbook > .item-box > .book { background-color: #f9a1ff; width: 60%; height: 166px; text-align: center; padding-top: 1.2rem;}
