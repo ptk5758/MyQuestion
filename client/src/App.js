@@ -6,7 +6,7 @@ import Question from './components/Question';
 import QuestionBook from './components/QuestionBook';
 import QuestionBookInsert from './components/QuestionBookInsert';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
+import Header from './components/Header';
 class App extends Component
 {
   constructor(props)
@@ -22,11 +22,14 @@ class App extends Component
     return(
       <div>
         <BrowserRouter>
+          <Header/>
+          <div className='content'>
           <Routes>
             <Route path='Question' element={<Question/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
           </Routes>
+          </div>
         </BrowserRouter>
       </div>
     );
