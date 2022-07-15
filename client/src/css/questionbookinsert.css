@@ -1,4 +1,42 @@
 .title{
-    font-weight: bold; font-size: 28px;
+    font-weight: bold; font-size: 20px;
     padding-left: 10%;
+}
+
+.subject{
+    padding-top: 5%;
+}
+
+.input{
+    padding-left: 13%;
+}
+
+.input_title{
+    width: 270px;
+    height: 50px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 3px solid #000000;
+}
+
+.now_question{
+    border: 2px solid black;
+    margin: 9%;
+}
+
+.question_list{
+    padding-left: 13%;
+}
+
+.color{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #000000;
+    margin-left: 13%;
+}
+
+.color-list{
+    display: flex;
 }
