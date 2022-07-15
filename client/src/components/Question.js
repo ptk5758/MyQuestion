@@ -5,29 +5,27 @@ class Question extends Component
   render()
   {
     return(
-      <div className='question'>
+      <div className='question_main' >
         <div className='title'>
-          <span>&lt;</span>
-          <span>문제</span>
+          <span className='back_btn'>&lt;</span>
+          <span className='title_name'>문제</span>
         </div>
-        <hr/>
         <div className='question_list'>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
-          <p>사과의 스펠링으로 옳은 것은?</p>
-          <hr/>
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+          
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
         </div>
         
-        <div className='button'>
-          <button className='regist_button'>등록하기</button>
+        <div className='btn'>
+          <button className='regist_btn'>등록하기</button>
         </div>
       </div>
     );
