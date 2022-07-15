@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import left_arrow from '../source/left-arrow.svg';
+import plus from '../source/plus.svg';
 class QuestionBook extends Component
 {
   render()
@@ -31,7 +32,9 @@ class QuestionBook extends Component
                     <span className='book'>대충 책제목</span>
                 </div>
                 <div className='item-box'>
-                    <span className='book'>대충 책제목</span>
+                    <span className='plus-book'>
+                        <img src={plus}/>                        
+                    </span>
                 </div>
             </div>
         </div>
