@@ -5,8 +5,28 @@ class Question extends Component
   render()
   {
     return(
-      <div>
-        <h1>문제</h1>
+      <div className='question_main' >
+        <div className='title'>
+          <span className='back_btn'>&lt;</span>
+          <span className='title_name'>문제</span>
+        </div>
+        <div className='question_list'>
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+          
+          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+        </div>
+        
+        <div className='btn'>
+          <button className='regist_btn'>등록하기</button>
+        </div>
       </div>
     );
   }  
