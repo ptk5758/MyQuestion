@@ -1,13 +1,31 @@
 .showBorder{ border: 1px solid#000000; }
-
+/* 헤더 */
 .header {display: flex; justify-content: space-between; padding: 0.8rem; border-bottom: 2px solid#000000;}
 .header > .box-left {flex: 1;}
 .header > .title {flex: 5; display: flex; justify-content: center; align-items: center;}
 .header > .title > span {font-weight: bold; font-size: 28px; }
 .header > .box-right {flex: 1;}
+/* 헤더 */
 
+/* 메인 */
+.main {height: 100%;}
+.main article {width: 75%; margin: 3rem auto;}
+.main article .title {font-weight: bold; display: flex; justify-content: space-between; align-items: end;}
+.main article .title .text {font-size: 22px;}
+.main article .title .more {font-size: 20px; color: #818181;}
+.main article .question-list {border : 2px solid#000000; border-radius: 0.8rem; margin-top: 0.3rem;}
+.main article .question-list .item {border-bottom: 1.5px solid#000000; padding: 0.7rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;}
+.main article .question-list .item:last-child {border: 0px solid#000000;}
+.main article .question-list .item .question-subject {}
+.main article .question-list .item .question-tag {background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;}
+
+
+/* 메인 */
+
+/* 문제집 */
 .questionbook { display: flex; flex-wrap: wrap; margin-top: 2.2rem;}
 .questionbook > .item-box { width: 50%; display: flex; justify-content: center; margin-bottom: 2.8rem; align-items: center;}
 .questionbook > .item-box > .book { background-color: #f9a1ff; width: 57%; height: 170px; text-align: center; padding-top: 1.2rem; font-size: 18px; font-weight: bold; color: #eee;  box-shadow: 7px 7px #cecece;}
 .questionbook > .item-box > .plus-book { width: 60%; height: 60%; position: relative;}
 .questionbook > .item-box > .plus-book > img { width: 80%; height: 80%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
+/* 문제집 */
