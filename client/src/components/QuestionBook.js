@@ -31,5 +31,31 @@ class QuestionBook extends Component
     );
   }  
 }
+class QuestionBookLatest extends Component
+{
+    render()
+  {
+    return(
+        <div className="question-list">
+            <QuestionBookItem/>
+            <QuestionBookItem/>
+            <QuestionBookItem/>
+            <QuestionBookItem/>
+        </div>
+    );
+  }
+}
 
-export default QuestionBook;
+class QuestionBookItem extends Component
+{
+    render()
+  {
+    return(
+        <div className="item">
+            <span className="question-subject">사과의 스펠링은?</span>
+        </div>
+    );
+  }
+}
+
+export { QuestionBook, QuestionBookLatest };

@@ -9,10 +9,10 @@
 
 /* 메인 */
 .main {height: 100%;}
-.main article {width: 75%; margin: 0 auto;}
+.main article {width: 75%; margin: 3rem auto;}
 .main article .title {font-weight: bold; display: flex; justify-content: space-between; align-items: end;}
 .main article .title .text {font-size: 22px;}
-.main article .title .more {font-size: 18px; color: #818181;}
+.main article .title .more {font-size: 20px; color: #818181;}
 .main article .question-list {border : 2px solid#000000; border-radius: 0.8rem; margin-top: 0.3rem;}
 .main article .question-list .item {border-bottom: 1.5px solid#000000; padding: 0.7rem; font-weight: 500; display: flex; justify-content: space-between; align-items: center;}
 .main article .question-list .item:last-child {border: 0px solid#000000;}
