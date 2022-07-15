@@ -4,6 +4,7 @@ import './css/main.css';
 import { Component } from 'react';
 import Question from './components/Question';
 import QuestionBook from './components/QuestionBook';
+import QuestionBookInsert from './components/QuestionBookInsert';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 class App extends Component
@@ -24,6 +25,7 @@ class App extends Component
           <Routes>
             <Route path='Question' element={<Question/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
+            <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
           </Routes>
         </BrowserRouter>
       </div>
