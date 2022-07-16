@@ -17,11 +17,11 @@ class QuestionBookInsert extends Component
                     <span className='add'>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
-                    <QuestionTag/>
-                    <QuestionTag/>
-                    <QuestionTag/>
-                    <QuestionTag/>
-                    <QuestionTag/>
+                    <QuestionBtn/>
+                    <QuestionBtn/>
+                    <QuestionBtn/>
+                    <QuestionBtn/>
+                    <QuestionBtn/>
                 </div>
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
@@ -37,17 +37,17 @@ class QuestionBookInsert extends Component
     }
 }
 
-class QuestionTag extends Component
+class QuestionBtn extends Component
 {
     render()
     {
         return(
         <div className='now_question'>
             <span className='one_question'>•사과 영어로 스펠링은?</span>
-            <span className='tag'>태그</span>
+            <span className='cancelbtn'>취소</span>
         </div>
         );
     }
 }
 
-export {QuestionBookInsert,QuestionTag};
+export {QuestionBookInsert,QuestionBtn};

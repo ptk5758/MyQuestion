@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import './css/main.css';
 import { Component } from 'react';
-import {QuestionBookInsert, QuestionTag} from './components/QuestionBookInsert';
+import {QuestionBookInsert, QuestionBtn} from './components/QuestionBookInsert';
 import { Question } from './components/Question';
 import { QuestionBook } from './components/QuestionBook';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

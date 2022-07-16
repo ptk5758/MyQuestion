@@ -61,6 +61,6 @@
     display: flex;
 }
 
-.tag{
+.cancelbtn{
     background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;
 }
