@@ -8,7 +8,7 @@ class QuestionInsert extends Component
             <div className="question-insert">
                 <article>
                     <div className="title">
-                        <span>• 문제 유형</span>
+                        <span className="text">• 문제 유형</span>                    
                     </div>
                     <div className="question-type">
                         <label className="btn">
@@ -21,12 +21,35 @@ class QuestionInsert extends Component
                 </article>
                 <article>
                     <div className="title">
-                        <span>• 문제</span>
+                        <span className="text">• 문제</span>                    
                     </div>
                     <div className="question-subject">
                         <label>
                             <input/>
                         </label>
+                    </div>
+                </article>
+                <article>
+                    <div className="title">
+                        <span className="text">• 정답</span>
+                        <span className="more">+ 답 추가</span>
+                    </div>
+                    <div className="question-answer">
+                        <div className="item">
+                            <span>1. 사과의 스펠링은?</span>
+                        </div>
+                        <div className="item">
+                            <span>1. 사과의 스펠링은?</span>
+                        </div>
+                        <div className="item">
+                            <span>1. 사과의 스펠링은?</span>
+                        </div>
+                        <div className="item">
+                            <span>1. 사과의 스펠링은?</span>
+                        </div>
+                        <div className="item">
+                            <span>1. 사과의 스펠링은?</span>
+                        </div>
                     </div>
                 </article>
             </div>
