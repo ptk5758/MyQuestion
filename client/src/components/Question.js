@@ -28,15 +28,14 @@ class Question extends Component
   }  
 }
 class QuestionLatest extends Component
-{
+{  
   render()
-  {
+  {            
     return(
       <div className="question-list">
-        <QuestionItem/>
-        <QuestionItem/>
-        <QuestionItem/>
-        <QuestionItem/>
+        {this.props.questions.map((str, index) => {
+          return <QuestionItem subject={str} key={index}/>
+        })}
       </div>
     )
   }
@@ -47,7 +46,7 @@ class QuestionItem extends Component
   {
     return(
         <div className="item">
-            <span className="question-subject">사과의 스펠링은?</span>
+            <span className="question-subject">{this.props.subject}</span>
             <span className="question-tag">TAG</span>
         </div>
     )
