@@ -27,5 +27,30 @@ class Question extends Component
     );
   }  
 }
-
-export default Question;
+class QuestionLatest extends Component
+{
+  render()
+  {
+    return(
+      <div className="question-list">
+        <QuestionItem/>
+        <QuestionItem/>
+        <QuestionItem/>
+        <QuestionItem/>
+      </div>
+    )
+  }
+}
+class QuestionItem extends Component
+{
+  render()
+  {
+    return(
+        <div className="item">
+            <span className="question-subject">사과의 스펠링은?</span>
+            <span className="question-tag">TAG</span>
+        </div>
+    )
+  }
+}
+export { Question, QuestionLatest, QuestionItem };
