@@ -35,23 +35,47 @@ class QuestionInsert extends Component
                         <span className="more">+ 답 추가</span>
                     </div>
                     <div className="question-answer">
-                        <div className="item">
-                            <span>1. 사과의 스펠링은?</span>
-                        </div>
-                        <div className="item">
-                            <span>1. 사과의 스펠링은?</span>
-                        </div>
-                        <div className="item">
-                            <span>1. 사과의 스펠링은?</span>
-                        </div>
-                        <div className="item">
-                            <span>1. 사과의 스펠링은?</span>
-                        </div>
-                        <div className="item">
-                            <span>1. 사과의 스펠링은?</span>
-                        </div>
+                        <QuestionTypeD/>
+                        <QuestionTypeD/>
+                        <QuestionTypeD/>
+                        <QuestionTypeD/>
+                        <QuestionTypeD/>
                     </div>
                 </article>
+                <div className="question-submit">
+                    <button>
+                        등록하기
+                    </button>
+                </div>
+            </div>
+        );
+    }
+}
+class QuestionTypeC extends Component
+{
+    render()
+    {
+        return(
+            <div className="item">
+                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="btns">                    
+                    <span className="btn-isAnswer">정답</span>
+                    <span className="btn-cancel">취소</span>
+                </span>
+            </div>
+        );
+    }
+}
+class QuestionTypeD extends Component
+{
+    render()
+    {
+        return(
+            <div className="item">
+                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="btns">                                        
+                    <span className="btn-cancel">취소</span>
+                </span>
             </div>
         );
     }
