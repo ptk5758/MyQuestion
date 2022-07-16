@@ -14,13 +14,14 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
+                    <span className='add'>+ 추가하기</span>
                 </div>
-                <div className='now_question'>
-                    <p className='question_list'>•사과 영어로 스펠링은?</p>
-                    <p className='question_list'>•사과 영어로 스펠링은?</p>
-                    <p className='question_list'>•사과 영어로 스펠링은?</p>
-                    <p className='question_list'>•사과 영어로 스펠링은?</p>
-                    <p className='question_list'>•사과 영어로 스펠링은?</p>
+                <div className='question_list'>
+                    <QuestionTag/>
+                    <QuestionTag/>
+                    <QuestionTag/>
+                    <QuestionTag/>
+                    <QuestionTag/>
                 </div>
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
@@ -36,4 +37,17 @@ class QuestionBookInsert extends Component
     }
 }
 
-export default QuestionBookInsert;
+class QuestionTag extends Component
+{
+    render()
+    {
+        return(
+        <div className='now_question'>
+            <span className='one_question'>•사과 영어로 스펠링은?</span>
+            <span className='tag'>태그</span>
+        </div>
+        );
+    }
+}
+
+export {QuestionBookInsert,QuestionTag};
