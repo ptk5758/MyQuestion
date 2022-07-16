@@ -25,6 +25,11 @@ class App extends Component
       <div>
         <BrowserRouter>
           <Header/>
+          <div className="modal">
+              <div className="modal-content">
+                  대충내용
+              </div>
+          </div>
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />

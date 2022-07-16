@@ -5,7 +5,7 @@ class QuestionInsert extends Component
     render()
     {
         return(
-            <div className="question-insert">
+            <div className="question-insert">                
                 <article>
                     <div className="title">
                         <span className="text">• 문제 유형</span>                    
