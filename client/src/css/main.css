@@ -1,4 +1,6 @@
+/* 기타 */
 .showBorder{ border: 1px solid#000000; }
+/*  */
 /* 헤더 */
 .header {display: flex; justify-content: space-between; padding: 0.8rem; border-bottom: 2px solid#000000;}
 .header > .box-left {flex: 1;}
@@ -18,9 +20,21 @@
 .main article .question-list .item:last-child {border: 0px solid#000000;}
 .main article .question-list .item .question-subject {}
 .main article .question-list .item .question-tag {background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;}
-
-
 /* 메인 */
+
+/* 문제 등록 */
+.question-insert {height: 100%;}
+.question-insert article {width: 80%; margin: 1.8rem auto;}
+.question-insert article > .title {font-weight: bold; font-size: 22px; margin-bottom: 1rem;}
+.question-type { display: flex; justify-content: space-around;}
+.question-type > .btn {border: 2px solid #000000; font-weight: bold; font-size: 1.2rem; padding: 0.8rem; border-radius: 0.3rem;}
+.question-type > .btn.on {border: 2px solid #383838; color: #ffffff; background-color: #383838;}
+
+.question-subject {width: 100%;}
+.question-subject label {width: 100%;}
+.question-subject input {border: none; width: 100%; border-bottom: 2px solid #818181; font-size: 1.2rem;}
+
+/* 문제 등록 */
 
 /* 문제집 */
 .questionbook { display: flex; flex-wrap: wrap; margin-top: 2.2rem;}
