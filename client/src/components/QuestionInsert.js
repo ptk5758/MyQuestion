@@ -57,7 +57,9 @@ class QuestionTypeC extends Component
     {
         return(
             <div className="item">
-                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="subject">
+                    <label>1 <input/></label>
+                </span>
                 <span className="btns">                    
                     <span className="btn-isAnswer">정답</span>
                     <span className="btn-cancel">취소</span>
@@ -72,7 +74,9 @@ class QuestionTypeD extends Component
     {
         return(
             <div className="item">
-                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="subject">
+                    <label>1 <input/></label>
+                </span>
                 <span className="btns">                                        
                     <span className="btn-cancel">취소</span>
                 </span>
