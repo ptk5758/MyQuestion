@@ -2,9 +2,10 @@ import { Component } from "react";
 import { QuestionLatest } from './Question';
 import { QuestionBookLatest } from './QuestionBook';
 class Main extends Component
-{
+{    
     render()
     {
+        let data = ["1번문제 어쩌구","2번문제 어쩌구","3번문제 어쩌구"];
         return(
             <div className="main">
                 <article>
@@ -12,7 +13,7 @@ class Main extends Component
                         <span className="text">나의 문제</span>
                         <span className="more">더보기</span>
                     </div>
-                    <QuestionLatest/>
+                    <QuestionLatest questions={data}/>
                 </article>
 
                 <article>
