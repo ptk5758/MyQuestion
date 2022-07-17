@@ -19,8 +19,7 @@ class QuestionInsert extends Component
         objs[index].question = event.target.value;        
         this.setState({
             questions: objs
-        });
-        console.log(this.state.questions);
+        });        
     }
     selectType(value)
     {
