@@ -8,9 +8,19 @@ class QuestionInsert extends Component
         this.state = {
             type: 0,
             questions: [
+                {question : ""},
                 {question : ""}
             ]
         }
+    }
+    questionValueChange(event, index)
+    {        
+        let objs = this.state.questions.slice();
+        objs[index].question = event.target.value;        
+        this.setState({
+            questions: objs
+        });
+        console.log(this.state.questions);
     }
     selectType(value)
     {
@@ -51,8 +61,8 @@ class QuestionInsert extends Component
                         <span className="more">+ 답 추가</span>
                     </div>
                     <div className="question-answer">                        
-                        { this.state.questions.map((obj, index) => {
-                            return this.state.type == 0 ? <QuestionTypeC/> : <QuestionTypeD/>;
+                        { this.state.questions.map((obj, index) => {                
+                            return this.state.type == 0 ? <QuestionTypeC question={obj.question} key={index} num={index} valueChange={this.questionValueChange.bind(this)}/> : <QuestionTypeD key={index} num={index}  valueChange={this.questionValueChange.bind(this)}/>;
                         }) }
                     </div>
                 </article>
@@ -68,11 +78,11 @@ class QuestionInsert extends Component
 class QuestionTypeC extends Component
 {
     render()
-    {
+    {                       
         return(
             <div className="item">
                 <span className="subject">
-                    <label>1 <input/></label>
+                    <label>{this.props.num} <input defaultValue={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
                 </span>
                 <span className="btns">                    
                     <span className="btn-isAnswer">정답</span>
@@ -89,7 +99,7 @@ class QuestionTypeD extends Component
         return(
             <div className="item">
                 <span className="subject">
-                    <label>1 <input/></label>
+                    <label>{this.props.num} <input defaultValue={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
                 </span>
                 <span className="btns">                                        
                     <span className="btn-cancel">취소</span>
