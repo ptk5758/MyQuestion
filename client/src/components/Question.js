@@ -47,16 +47,18 @@ class Question extends Component
 class QuestionLatest extends Component
 {  
   render()
-  {            
+  {       
+    let data = this.props.questions;     
     return(
       <div className="question-list">
-        {this.props.questions.map((str, index) => {
+        {data.map((str, index) => {
           return <QuestionItem subject={str} key={index}/>
         })}
       </div>
     )
   }
 }
+
 class QuestionItem extends Component
 {
   render()
