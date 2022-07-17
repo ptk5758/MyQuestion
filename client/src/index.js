@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import './css/Question.css';
-import './css/questionbookinsert.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
