@@ -2,8 +2,33 @@ import React from "react";
 import { Component } from "react";
 class QuestionInsert extends Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            type: 0,
+            questions: [
+                {question : ""},
+                {question : ""}
+            ]
+        }
+    }
+    questionValueChange(event, index)
+    {        
+        let objs = this.state.questions.slice();
+        objs[index].question = event.target.value;        
+        this.setState({
+            questions: objs
+        });        
+    }
+    selectType(value)
+    {
+        this.setState({type: value});
+    }
     render()
     {
+        let question = this.state.type == 0 ? <QuestionTypeC/> : <QuestionTypeD/>;        
+
         return(
             <div className="question-insert">                
                 <article>
@@ -11,10 +36,10 @@ class QuestionInsert extends Component
                         <span className="text">• 문제 유형</span>                    
                     </div>
                     <div className="question-type">
-                        <label className="btn">
+                        <label className={this.state.type == 0 ? "btn on" : "btn"} onClick={this.selectType.bind(this, 0)}>
                             <span>객관식</span>
                         </label>
-                        <label className="btn on">
+                        <label className={this.state.type != 0 ? "btn on" : "btn"} onClick={this.selectType.bind(this, 1)}>
                             <span>주관식</span>
                         </label>
                     </div>
@@ -34,12 +59,10 @@ class QuestionInsert extends Component
                         <span className="text">• 정답</span>
                         <span className="more">+ 답 추가</span>
                     </div>
-                    <div className="question-answer">
-                        <QuestionTypeD/>
-                        <QuestionTypeD/>
-                        <QuestionTypeD/>
-                        <QuestionTypeD/>
-                        <QuestionTypeD/>
+                    <div className="question-answer">                        
+                        { this.state.questions.map((obj, index) => {                
+                            return this.state.type == 0 ? <QuestionTypeC question={obj.question} key={index} num={index} valueChange={this.questionValueChange.bind(this)}/> : <QuestionTypeD key={index} num={index}  valueChange={this.questionValueChange.bind(this)}/>;
+                        }) }
                     </div>
                 </article>
                 <div className="question-submit">
@@ -54,10 +77,12 @@ class QuestionInsert extends Component
 class QuestionTypeC extends Component
 {
     render()
-    {
+    {                       
         return(
             <div className="item">
-                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="subject">
+                    <label>{this.props.num} <input defaultValue={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
+                </span>
                 <span className="btns">                    
                     <span className="btn-isAnswer">정답</span>
                     <span className="btn-cancel">취소</span>
@@ -72,7 +97,9 @@ class QuestionTypeD extends Component
     {
         return(
             <div className="item">
-                <span className="subject">1. 사과의 스펠링은?</span>
+                <span className="subject">
+                    <label>{this.props.num} <input defaultValue={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
+                </span>
                 <span className="btns">                                        
                     <span className="btn-cancel">취소</span>
                 </span>
