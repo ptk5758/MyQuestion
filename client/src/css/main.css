@@ -1,4 +1,6 @@
+/* 기타 */
 .showBorder{ border: 1px solid#000000; }
+/*  */
 /* 헤더 */
 .header {display: flex; justify-content: space-between; padding: 0.8rem; border-bottom: 2px solid#000000;}
 .header > .box-left {flex: 1;}
@@ -18,9 +20,34 @@
 .main article .question-list .item:last-child {border: 0px solid#000000;}
 .main article .question-list .item .question-subject {}
 .main article .question-list .item .question-tag {background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;}
-
-
 /* 메인 */
+
+/* 문제 등록 */
+.question-insert {height: 100%;}
+.question-insert article {width: 88%; margin: 2rem auto;}
+.question-insert article > .title {margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-end;}
+.question-insert article > .title > .text {font-weight: bold; font-size: 24px; }
+.question-insert article > .title > .more {font-weight: bold; font-size: 18px; color: gray; border: 2px solid gray; padding: 0.3rem 0.3rem; border-radius: 0.3rem;}
+
+.question-type { display: flex; justify-content: space-around;}
+.question-type > .btn {border: 2px solid #000000; font-weight: bold; font-size: 1.2rem; padding: 0.8rem 1.0rem; border-radius: 0.3rem;}
+.question-type > .btn.on {border: 2px solid #383838; color: #ffffff; background-color: #383838;}
+
+.question-subject {width: 100%;}
+.question-subject label {width: 100%;}
+.question-subject input {border: none; width: 100%; border-bottom: 2px solid #818181; font-size: 1.2rem;}
+
+.question-answer {width: 100%;}
+.question-answer > .item {display: flex; margin: 0.5rem; justify-content: space-between; align-items: center;}
+.question-answer > .item > .subject {width: 60%;}
+.question-answer > .item > .btns {width: 35%; display: flex; justify-content: flex-end;}
+.btns > span {padding: 0.2rem 0.6rem; font-weight: 600; color: #f1f1f1; border-radius: 0.3rem;}
+.btns > .btn-isAnswer {background-color: #7ecef4;}
+.btns > .btn-cancel {background-color: #ff2d2d; margin-left: 0.5rem;}
+
+.question-submit { display: flex; justify-content: center;}
+.question-submit > button {width: 40%; border-radius: 1rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 0.7rem; font-weight: bold;}
+/* 문제 등록 */
 
 /* 문제집 */
 .questionbook { display: flex; flex-wrap: wrap; margin-top: 2.2rem;}
@@ -29,3 +56,29 @@
 .questionbook > .item-box > .plus-book { width: 60%; height: 60%; position: relative;}
 .questionbook > .item-box > .plus-book > img { width: 80%; height: 80%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);}
 /* 문제집 */
+
+
+/* 모달 */
+.modal {
+    display: none;
+    width: 100%;
+    background-color: hsl(0, 0%, 57%, 90%);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    transform: translate(-50%, -50%);    
+}
+.modal.open {
+    display: block;
+}
+.modal-content {
+    background-color: #ffffff;
+    width: 80%;
+    min-height: 60%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+/* 모달 */
