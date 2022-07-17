@@ -2,22 +2,36 @@ import { Component } from 'react';
 
 class Question extends Component
 {
-  render()
+  constructor(props)
   {
+    super(props);
+    this.state = {
+      questions: [
+        {
+          uid: 0,
+          question: "asd"
+        }
+      ]
+    }
+  }
+  componentDidMount()
+  {
+    fetch("http://localhost:5000")
+    .then(res => res.json())
+    .then(json =>{      
+      this.setState({
+        questions : json
+      });      
+    });
+  }
+  render()
+  {    
     return(
       <div className='question_main' >
-        <div className='question_list'>
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
-
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
-
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
-
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
-
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
-          
-          <p className='question'>사과의 스펠링으로 옳은 것은?</p>
+        <div className='question_list'>          
+          {this.state.questions.map((item, index) => {
+            return <p className='question' key={index}>{item.question}</p>
+          })}
         </div>
         
         <div className='btn'>
@@ -27,6 +41,9 @@ class Question extends Component
     );
   }  
 }
+
+
+
 class QuestionLatest extends Component
 {  
   render()
