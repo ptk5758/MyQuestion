@@ -27,6 +27,17 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/book", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    
+    let q = "select * from book"
+    conn.query(q, (error, rows, field) => {
+        if(error)
+            console.log(error);
+        res.send(rows)
+    });
+});
+
 app.listen(5000, () =>{
     console.log('5000번 포트로 서버가 열림');
 });
