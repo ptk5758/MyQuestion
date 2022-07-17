@@ -2,6 +2,21 @@ import { Component } from 'react';
 
 class Question extends Component
 {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+
+    }
+  }
+  componentDidMount()
+  {
+    fetch("http://localhost:5000")
+    .then(res => res.json())
+    .then(json =>{
+      console.log(json);
+    });
+  }
   render()
   {
     return(
@@ -27,6 +42,9 @@ class Question extends Component
     );
   }  
 }
+
+
+
 class QuestionLatest extends Component
 {  
   render()
