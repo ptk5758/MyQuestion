@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Modal } from './Modal';
+import Modal from './component/Modal';
 
 class QuestionBookInsert extends Component
 {

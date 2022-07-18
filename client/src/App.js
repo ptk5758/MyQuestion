@@ -47,7 +47,6 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)} closeModal={this.closeModal.bind(this)}/>}/>
-
           </Routes>
           </div>
         </BrowserRouter>
