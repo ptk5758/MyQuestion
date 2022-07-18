@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import QuestionInsert from './components/QuestionInsert';
 import Header from './components/Header';
 import Main from './components/Main';
+import Modal from './components/Modal';
 
 class App extends Component
 {
@@ -33,6 +34,7 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
+            <Route path='Modal' element={<Modal/>}/>
           </Routes>
           </div>
         </BrowserRouter>

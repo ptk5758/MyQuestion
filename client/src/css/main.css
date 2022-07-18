@@ -83,6 +83,41 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.tag-select-title{
+    font-weight: bold; 
+    font-size: 25px;
+    padding-left: 10%;
+}
+
+.closebtn{
+    font-weight: bold; 
+    font-size: 30px;
+    color: #ff2d2d;
+    padding-left: 60%;
+}
+
+.tag-select-btn{
+    background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;
+}
+
+.division{
+    border-bottom: 2px solid#000000;
+}
+
+.questionlist{
+    padding-left: 5%;
+}
+
+.question-regist{
+    padding: 3%;
+}
+
+.registbtn{
+    padding-left: 25%;
+}
+
+
 /* 모달 */
 
 /*ptk*/
