@@ -45,7 +45,8 @@
 .question-answer > .item > .subject > label > input {border: none; border-bottom: 2px solid #818181; width: 100%;}
 .btns > span {padding: 0.2rem 0.6rem; font-weight: 600; color: #f1f1f1; border-radius: 0.3rem;}
 .btns > .btn-isAnswer {background-color: #7ecef4;}
-.btns > .btn-cancel {background-color: #ff2d2d; margin-left: 0.5rem;}
+.btns > .btn-isAnswer.on {color: #7ecef4; background-color: #ffffff; border: 1px solid #7ecef4;}
+.btns > .btn-cancel {background-color: #ff2d2d; margin-left: 0.5rem; border: 1px solid #ff2d2d;}
 
 .question-submit { display: flex; justify-content: center;}
 .question-submit > button {width: 40%; border-radius: 1rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 0.7rem; font-weight: bold;}

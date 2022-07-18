@@ -9,7 +9,7 @@ class QuestionInsert extends Component
             type: 0,
             subject: "",
             questions: [
-                {question : ""}
+                {question : "", isAnswer: false}
             ]
         }
     }
@@ -28,7 +28,7 @@ class QuestionInsert extends Component
     addAnswer()
     {
         this.setState({
-            questions: [...this.state.questions, {question: ""}]
+            questions: [...this.state.questions, {question: "", isAnswer: false}]
         });
     }
     cancelAnswer(index)
@@ -43,6 +43,12 @@ class QuestionInsert extends Component
     {
         this.setState({subject: e.target.value});        
     }
+    toggleIsAnswer(index)
+    {                
+        let arr = [...this.state.questions];
+        arr[index].isAnswer = !arr[index].isAnswer;
+        this.setState({questions: arr});        
+    }    
     render()
     {
         return(
@@ -77,7 +83,8 @@ class QuestionInsert extends Component
                     </div>
                     <div className="question-answer">                        
                         { this.state.questions.map((obj, index) => {                
-                            return this.state.type == 0 ? <QuestionTypeC cancelAnswer={this.cancelAnswer.bind(this)} question={obj.question} key={index} num={index} valueChange={this.questionValueChange.bind(this)}/> : <QuestionTypeD question={obj.question} cancelAnswer={this.cancelAnswer.bind(this)}  key={index} num={index}  valueChange={this.questionValueChange.bind(this)}/>;
+                            return this.state.type == 0 ? 
+                            <QuestionTypeC toggleIsAnswer={this.toggleIsAnswer.bind(this)} isAnswer={obj.isAnswer} cancelAnswer={this.cancelAnswer.bind(this)} question={obj.question} key={index} num={index} valueChange={this.questionValueChange.bind(this)}/> :  <QuestionTypeD question={obj.question} cancelAnswer={this.cancelAnswer.bind(this)}  key={index} num={index}  valueChange={this.questionValueChange.bind(this)}/>;
                         }) }
                     </div>
                 </article>
@@ -100,7 +107,7 @@ class QuestionTypeC extends Component
                     <label>{this.props.num} <input value={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
                 </span>
                 <span className="btns">                    
-                    <span className="btn-isAnswer">정답</span>
+                    <span className={this.props.isAnswer ? "btn-isAnswer" : "btn-isAnswer on"} onClick={() => {this.props.toggleIsAnswer(this.props.num)}}>정답</span>
                     <span className="btn-cancel" onClick={() => {this.props.cancelAnswer(this.props.num)}}>취소</span>
                 </span>
             </div>
