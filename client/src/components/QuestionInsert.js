@@ -27,12 +27,20 @@ class QuestionInsert extends Component
     }
     addAnswer()
     {
+        if(this.state.questions.length >= 10)
+        {
+            return;
+        }
         this.setState({
             questions: [...this.state.questions, {question: "", isAnswer: false}]
         });
     }
     cancelAnswer(index)
     {   
+        if(this.state.questions.length <= 1)
+        {
+            return;
+        }
         let arr = [...this.state.questions];
         arr.splice(index,1);
         this.setState({
@@ -104,7 +112,7 @@ class QuestionTypeC extends Component
         return(
             <div className="item">
                 <span className="subject">
-                    <label>{this.props.num} <input value={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
+                    <label>{this.props.num+1} <input value={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
                 </span>
                 <span className="btns">                    
                     <span className={this.props.isAnswer ? "btn-isAnswer" : "btn-isAnswer on"} onClick={() => {this.props.toggleIsAnswer(this.props.num)}}>정답</span>
@@ -121,7 +129,7 @@ class QuestionTypeD extends Component
         return(
             <div className="item">
                 <span className="subject">
-                    <label>{this.props.num} <input value={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
+                    <label>{this.props.num+1} <input value={this.props.question} onChange={(e)=>{this.props.valueChange(e, this.props.num)}}/></label>
                 </span>
                 <span className="btns">                                        
                     <span className="btn-cancel" onClick={() => {this.props.cancelAnswer(this.props.num)}}>취소</span>
