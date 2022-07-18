@@ -71,4 +71,5 @@ class QuestionItem extends Component
     )
   }
 }
+
 export { Question, QuestionLatest, QuestionItem };

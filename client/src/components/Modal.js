@@ -2,11 +2,15 @@ import React, { Component } from "react";
 
 class Modal extends Component
 {
-    
+    constructor(props)
+    {
+        super(props);
+    }
+
     render()
     {
         return(
-            <div className="modal open">
+            <div className={this.state.modal ? "modal open" : "modal"}  >
               <div className="modal-content">
                 <span className="tag-select-title">• 태그</span>
                 <span className="closebtn">X</span>

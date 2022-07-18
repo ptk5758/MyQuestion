@@ -1,7 +1,16 @@
 import { Component } from 'react';
+import { Modal } from './Modal';
 
 class QuestionBookInsert extends Component
 {
+    constructor(props)
+    {
+        super(props)
+        this.state = {
+
+        }
+    }
+
     render()
     {
         return(
@@ -14,7 +23,7 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add'>+ 추가하기</span>
+                    <span className='add' onClick={()=>{this.props.openModal()}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
                     <QuestionBtn/>
