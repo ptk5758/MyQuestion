@@ -3,25 +3,39 @@ import plus from '../source/plus.svg';
 
 class QuestionBook extends Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            books: [
+                {
+                    uid: 0,
+                    subject: "qqq"
+                }
+            ]
+        }
+    }
+    componentDidMount()
+    {
+        fetch("http://localhost:5000/book")
+        .then(res => res.json())
+        .then(json =>{
+            this.setState({
+                books : json
+            });
+        });
+    }
   render()
   {
     return(
         <div className='questionbook'>
-            <div className='item-box'>
-                <span className='book'>대충 책제목</span>
-            </div>
-            <div className='item-box'>
-                <span className='book'>대충 책제목</span>
-            </div>
-            <div className='item-box'>
-                <span className='book'>대충 책제목</span>
-            </div>
-            <div className='item-box'>
-                <span className='book'>대충 책제목</span>
-            </div>
-            <div className='item-box'>
-                <span className='book'>대충 책제목</span>
-            </div>
+            {this.state.books.map((bookname, index) => {
+                return (
+                    <div className='item-box'>
+                        <span className='book' key={index}>{bookname.subject}</span>
+                    </div>
+                );
+            })}
             <div className='item-box'>
                 <span className='plus-book'>
                     <img src={plus}/>                        
