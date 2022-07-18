@@ -7,6 +7,7 @@ class QuestionInsert extends Component
         super(props);
         this.state = {
             type: 0,
+            subject: "",
             questions: [
                 {question : ""}
             ]
@@ -36,7 +37,11 @@ class QuestionInsert extends Component
         arr.splice(index,1);
         this.setState({
             questions: [...arr]
-        });
+        });        
+    }
+    subjectChange(e)
+    {
+        this.setState({subject: e.target.value});        
     }
     render()
     {
@@ -61,7 +66,7 @@ class QuestionInsert extends Component
                     </div>
                     <div className="question-subject">
                         <label>
-                            <input/>
+                            <input value={this.state.subject} onChange={this.subjectChange.bind(this)}/>
                         </label>
                     </div>
                 </article>
