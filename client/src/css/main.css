@@ -88,7 +88,6 @@
 
 /*ptk*/
 
-
 /*csm*/
 
 /*문제*/
@@ -99,9 +98,7 @@
     border-bottom: 1px solid#000000;
     padding-bottom: 15px;
 }
-/*문제*/
 
-/*문제집 등록*/
 .insert_main .title{
     font-weight: bold; font-size: 20px;
     padding-left: 10%;
@@ -112,7 +109,7 @@
     padding-left: 20%;
 }
 
-.subject{
+.insert_main .subject{
     padding-top: 5%;
 }
 
@@ -169,3 +166,4 @@
     background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;
 }
 /*문제집 등록*/
+
