@@ -8,7 +8,6 @@ class QuestionInsert extends Component
         this.state = {
             type: 0,
             questions: [
-                {question : ""},
                 {question : ""}
             ]
         }
@@ -24,6 +23,12 @@ class QuestionInsert extends Component
     selectType(value)
     {
         this.setState({type: value});
+    }
+    addAnswer()
+    {
+        this.setState({
+            questions: [...this.state.questions, {question: ""}]
+        });
     }
     render()
     {
@@ -57,7 +62,7 @@ class QuestionInsert extends Component
                 <article>
                     <div className="title">
                         <span className="text">• 정답</span>
-                        <span className="more">+ 답 추가</span>
+                        <span className="more" onClick={this.addAnswer.bind(this)}>+ 답 추가</span>
                     </div>
                     <div className="question-answer">                        
                         { this.state.questions.map((obj, index) => {                
