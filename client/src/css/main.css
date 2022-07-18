@@ -45,7 +45,8 @@
 .question-answer > .item > .subject > label > input {border: none; border-bottom: 2px solid #818181; width: 100%;}
 .btns > span {padding: 0.2rem 0.6rem; font-weight: 600; color: #f1f1f1; border-radius: 0.3rem;}
 .btns > .btn-isAnswer {background-color: #7ecef4;}
-.btns > .btn-cancel {background-color: #ff2d2d; margin-left: 0.5rem;}
+.btns > .btn-isAnswer.on {color: #7ecef4; background-color: #ffffff; border: 1px solid #7ecef4;}
+.btns > .btn-cancel {background-color: #ff2d2d; margin-left: 0.5rem; border: 1px solid #ff2d2d;}
 
 .question-submit { display: flex; justify-content: center;}
 .question-submit > button {width: 40%; border-radius: 1rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 0.7rem; font-weight: bold;}
@@ -85,12 +86,7 @@
 }
 /* 모달 */
 
-<<<<<<< HEAD
-/* ptk */
-=======
 /*ptk*/
-
->>>>>>> 73ef8e0513b7dc5c65ab636a7318dde268e5872e
 
 /*csm*/
 
@@ -102,13 +98,7 @@
     border-bottom: 1px solid#000000;
     padding-bottom: 15px;
 }
-/*문제*/
 
-<<<<<<< HEAD
-/*문제집 추가*/
-=======
-/*문제집 등록*/
->>>>>>> 73ef8e0513b7dc5c65ab636a7318dde268e5872e
 .insert_main .title{
     font-weight: bold; font-size: 20px;
     padding-left: 10%;
@@ -119,11 +109,7 @@
     padding-left: 20%;
 }
 
-<<<<<<< HEAD
 .insert_main .subject{
-=======
-.subject{
->>>>>>> 73ef8e0513b7dc5c65ab636a7318dde268e5872e
     padding-top: 5%;
 }
 
@@ -179,7 +165,5 @@
 .cancelbtn{
     background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem;
 }
-<<<<<<< HEAD
-=======
 /*문제집 등록*/
->>>>>>> 73ef8e0513b7dc5c65ab636a7318dde268e5872e
+
