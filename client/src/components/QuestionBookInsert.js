@@ -1,7 +1,15 @@
 import { Component } from 'react';
+import { Modal } from './Modal';
 
 class QuestionBookInsert extends Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state={
+        }
+    }
+
     render()
     {
         return(
@@ -26,9 +34,9 @@ class QuestionBookInsert extends Component
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
                     <div className='color-list'>
-                        <p className='color'></p>
-                        <p className='color'></p>
-                        <p className='color'></p>
+                        <p className='color' onClick={() => <Modal open={true}/>}>m1</p>
+                        <p className='color'>m2</p>
+                        <p className='color'>m3</p>
                         <p className='color'></p>
                     </div>
                 </div>
