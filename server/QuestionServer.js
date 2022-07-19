@@ -1,7 +1,7 @@
 const fs = require('fs');
 const df = fs.readFileSync('./database.json');
 const database = JSON.parse(df);
-
+const bodyParser = require('body-parser');
 let express = require("express");
 let mysql = require("mysql");
 let conn = mysql.createConnection({
@@ -11,11 +11,11 @@ let conn = mysql.createConnection({
     database: database.database,
     port: database.port
 });
-
 conn.connect();
 
 let app = express();
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
     
@@ -25,6 +25,12 @@ app.get("/", (req, res) => {
             console.log(error);
         res.send(rows)
     });
+});
+
+app.post("/question", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    console.log(req.body);
+    res.send("TEST");
 });
 
 app.get("/book", (req, res) => {

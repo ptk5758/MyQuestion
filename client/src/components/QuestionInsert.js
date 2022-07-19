@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import axios from 'axios';
 class QuestionInsert extends Component
 {
     constructor(props)
@@ -57,10 +58,34 @@ class QuestionInsert extends Component
         arr[index].isAnswer = !arr[index].isAnswer;
         this.setState({questions: arr});        
     }    
+    questionSubmit(e)
+    {
+        e.preventDefault();
+        console.log(this.state);
+        this.questionAdd()
+        .then(res=>{console.log(res);});
+    }
+    questionAdd()
+    {
+        const url = "http://localhost:5000/question";
+        const formData = new FormData();
+        formData.append("subject" , this.state.subject);
+        const config = {
+            headers : {
+                "Content-type" : "multipart/form-data"
+            }
+        }        
+        return axios({
+            method: 'post',
+            url: "http://localhost:5000/question",
+            data: formData,
+            headers: {'Content-Type' : 'multypart/form-data'}
+        });
+    }
     render()
     {
         return(
-            <div className="question-insert">                
+            <form className="question-insert" onSubmit={this.questionSubmit.bind(this)}>
                 <article>
                     <div className="title">
                         <span className="text">• 문제 유형</span>                    
@@ -80,7 +105,7 @@ class QuestionInsert extends Component
                     </div>
                     <div className="question-subject">
                         <label>
-                            <input value={this.state.subject} onChange={this.subjectChange.bind(this)}/>
+                            <input name="subject" value={this.state.subject} onChange={this.subjectChange.bind(this)}/>
                         </label>
                     </div>
                 </article>
@@ -101,7 +126,7 @@ class QuestionInsert extends Component
                         등록하기
                     </button>
                 </div>
-            </div>
+            </form>
         );
     }
 }
