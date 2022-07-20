@@ -15,7 +15,7 @@ conn.connect();
 
 let app = express();
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
     

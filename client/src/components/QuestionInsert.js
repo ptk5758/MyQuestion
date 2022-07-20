@@ -67,21 +67,19 @@ class QuestionInsert extends Component
     }
     questionAdd()
     {
+        const qs = require('qs');
+
         const url = "http://localhost:5000/question";
-        const formData = new FormData();
-        formData.append("subject" , this.state.subject);
-        const config = {
-            headers : {
-                "Content-type" : "multipart/form-data"
-            }
-        }        
-        return axios({
-            method: 'post',
-            url: "http://localhost:5000/question",
-            data: formData,
-            headers: {'Content-Type' : 'multypart/form-data'}
-        });
+        const data = {
+            type: this.state.type,
+            subject: this.state.subject,
+            answers: this.state.questions
+        }
+        // aasdf = asdf
+
+        return axios.post(url, qs.stringify(data));
     }
+    
     render()
     {
         return(
