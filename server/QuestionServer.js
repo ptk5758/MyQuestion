@@ -28,9 +28,11 @@ app.get("/", (req, res) => {
 });
 
 app.post("/question", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');  
-    console.log(req.body);
-    res.send("TEST");
+    res.setHeader('Access-Control-Allow-origin', '*');
+    let query = `insert into question (question, mode) values ("${req.body.subject}", ${req.body.type})`;
+    conn.query(query, (err, row, fields)=>{
+        res.send(row);
+    });
 });
 
 app.get("/book", (req, res) => {

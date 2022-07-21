@@ -58,13 +58,14 @@ class QuestionInsert extends Component
         arr[index].isAnswer = !arr[index].isAnswer;
         this.setState({questions: arr});        
     }    
+    // 서브밋 전 서브밋 함수 불러오기
     questionSubmit(e)
     {
         e.preventDefault();
-        console.log(this.state);
         this.questionAdd()
         .then(res=>{console.log(res);});
     }
+    // 서브밋
     questionAdd()
     {
         const qs = require('qs');
@@ -75,7 +76,6 @@ class QuestionInsert extends Component
             subject: this.state.subject,
             answers: this.state.questions
         }
-        // aasdf = asdf
 
         return axios.post(url, qs.stringify(data));
     }
