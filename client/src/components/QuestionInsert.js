@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import axios from 'axios';
 class QuestionInsert extends Component
 {
     constructor(props)
@@ -57,10 +58,32 @@ class QuestionInsert extends Component
         arr[index].isAnswer = !arr[index].isAnswer;
         this.setState({questions: arr});        
     }    
+    // 서브밋 전 서브밋 함수 불러오기
+    questionSubmit(e)
+    {
+        e.preventDefault();
+        this.questionAdd()
+        .then(res=>{console.log(res);});
+    }
+    // 서브밋
+    questionAdd()
+    {
+        const qs = require('qs');
+
+        const url = "http://localhost:5000/question";
+        const data = {
+            type: this.state.type,
+            subject: this.state.subject,
+            answers: this.state.questions
+        }
+
+        return axios.post(url, qs.stringify(data));
+    }
+    
     render()
     {
         return(
-            <div className="question-insert">                
+            <form className="question-insert" onSubmit={this.questionSubmit.bind(this)}>
                 <article>
                     <div className="title">
                         <span className="text">• 문제 유형</span>                    
@@ -80,7 +103,7 @@ class QuestionInsert extends Component
                     </div>
                     <div className="question-subject">
                         <label>
-                            <input value={this.state.subject} onChange={this.subjectChange.bind(this)}/>
+                            <input name="subject" value={this.state.subject} onChange={this.subjectChange.bind(this)}/>
                         </label>
                     </div>
                 </article>
@@ -101,7 +124,7 @@ class QuestionInsert extends Component
                         등록하기
                     </button>
                 </div>
-            </div>
+            </form>
         );
     }
 }
