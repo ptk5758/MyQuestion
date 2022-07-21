@@ -17,24 +17,31 @@ class App extends Component
   {
     super(props);
     this.state = {
-      
+      modal_component:"",
+      isModal:false
     }
   }
+
+  setModal(component){
+    this.setState({modal_component:component, isModal:true});
+
+  }
+
   render()
   {
     // route 의 속성 path 는 대소문자 구문안함
     return(
       <div>
+        <Modal isModal={this.state.isModal}/>
         <BrowserRouter>
           <Header/>
-          <Modal/>
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />
             <Route path='Question' element={<Question/>} />
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
-            <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
+            <Route path='QuestionBookInsert' element={<QuestionBookInsert setModal={this.setModal.bind(this)}/>}/>
           </Routes>
           </div>
         </BrowserRouter>
@@ -42,5 +49,6 @@ class App extends Component
     );
   }  
 }
+
 
 export default App;
