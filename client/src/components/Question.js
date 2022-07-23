@@ -25,13 +25,13 @@ class Question extends Component
     });
   }
   render()
-  {        
-    return(
+  {            
+    return(      
       <div className='question_main' >
         <div className='question_list'>          
           {this.state.questions.map((item, index) => {
             console.log(item);
-            return <Link to={/question/+item.uid}><p className='question' key={index}>{item.question}</p></Link>
+            return <Link to={"/question/uid="+item.uid}><p className='question' key={index}>{item.question}</p></Link>
           })}
         </div>
         
@@ -63,7 +63,7 @@ class QuestionLatest extends Component
 class QuestionItem extends Component
 {
   render()
-  {
+  {    
     return(
         <div className="item">
             <span className="question-subject">{this.props.subject}</span>
@@ -72,4 +72,5 @@ class QuestionItem extends Component
     )
   }
 }
+
 export { Question, QuestionLatest, QuestionItem };
