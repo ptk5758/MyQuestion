@@ -7,8 +7,8 @@ class QuestionBookInsert extends Component
     constructor(props)
     {
         super(props);
-        this.state={
-            
+        this.state={            
+
         }
     }
 
@@ -24,7 +24,7 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add' onClick={() => {this.props.setModal()}}>+ 추가하기</span>
+                    <span className='add' onClick={()=>{this.props.openModal(<QuestionBookInsertModal/>, "문제등록하기")}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
                     <QuestionBtn/>
@@ -59,33 +59,49 @@ class QuestionBtn extends Component
         );
     }
 }
-
-class M1 extends Component
+class QuestionBookInsertModal extends Component
 {
+    componentDidMount()
+    {
+        fetch("http://localhost:5000/question")
+        .then(res=>res.json())
+        .then(json=>{
+            this.setState({questions : json});
+        });
+    }
+    constructor(props)
+    {
+        super(props);
+        this.state = {
+            questions : [
+                { question: "" }
+            ]
+        }
+    }
+        
     render()
     {
         return(
-            <div>m1</div>
+            <div>
+                <div className="tag-select">
+                    <span className="tag-select-btn">기능사</span>
+                    <span className="tag-select-btn">영어단어</span>
+                    <span className="tag-select-btn">컴퓨터</span>
+                    <span className="tag-select-btn">자격증</span>
+                </div>
+                <p className="division"></p>
+                <div className="question-regist">
+                        {this.state.questions.map((obj,index) => {
+                            return(
+                                <div className="question-regist-item" key={index}>
+                                    <span className='questionlist' >{obj.question}</span>
+                                    <span className="registbtn">등록</span>
+                                </div>
+                            );                            
+                        })}                    
+                </div>
+            </div>
         );
     }
 }
-class M2 extends Component
-{
-    render()
-    {
-        return(
-            <div>m1</div>
-        );
-    }
-}
-class M3 extends Component
-{
-    render()
-    {
-        return(
-            <div>m1</div>
-        );
-    }
-}
-
 export {QuestionBookInsert,QuestionBtn};
