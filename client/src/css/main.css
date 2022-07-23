@@ -126,8 +126,15 @@
 
 .question-regist-item{
     display: flex;
-    align-content: center;
+    align-items: center;
 }
+
+/* 모달-ptk */
+.modal-content > .modal-header {display: flex; padding: 1rem; justify-content: space-between; align-items: center;}
+.modal-content > .modal-header > .modal-header-title {font-weight: bold; font-size: 22px;}
+.modal-content > .modal-header > .modal-close-btn {font-weight: bold; font-size: 22px; padding: 2px 10px; color: #ff2d2d;}
+/* 모달-ptk */
+
 /* 모달 */
 
 /*ptk*/

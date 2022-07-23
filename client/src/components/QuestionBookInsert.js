@@ -24,7 +24,7 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add' onClick={() => {this.props.setModal()}}>+ 추가하기</span>
+                    <span className='add' onClick={()=>{this.props.openModal(<QuestionBookInsertModal/>)}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
                     <QuestionBtn/>
@@ -59,33 +59,27 @@ class QuestionBtn extends Component
         );
     }
 }
-
-class M1 extends Component
+class QuestionBookInsertModal extends Component
 {
     render()
     {
         return(
-            <div>m1</div>
+            <div>
+                <div className="tag-select">
+                    <span className="tag-select-btn">기능사</span>
+                    <span className="tag-select-btn">영어단어</span>
+                    <span className="tag-select-btn">컴퓨터</span>
+                    <span className="tag-select-btn">자격증</span>
+                </div>
+                <p className="division"></p>
+                <div className="question-regist">                    
+                    <div className="question-regist-item">
+                        <p className='questionlist' >어쩌구어쩌구</p>
+                        <span className="registbtn">등록</span>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
-class M2 extends Component
-{
-    render()
-    {
-        return(
-            <div>m1</div>
-        );
-    }
-}
-class M3 extends Component
-{
-    render()
-    {
-        return(
-            <div>m1</div>
-        );
-    }
-}
-
 export {QuestionBookInsert,QuestionBtn};
