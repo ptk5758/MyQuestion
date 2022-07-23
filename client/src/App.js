@@ -13,6 +13,7 @@ import { Modal } from './components/Modal';
 
 import { QuestionView } from './components/QuestionView';
 
+
 class App extends Component
 {
   constructor(props)
@@ -28,6 +29,7 @@ class App extends Component
   {
     this.setState({modal_component : component, isModal: true, modal_title: title});
   }
+
   closeModal()
   {
     this.setState({isModal: false}); 
@@ -42,6 +44,7 @@ class App extends Component
         <Modal title={this.state.modal_title} isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
           <Header/>
+          <Modal/>
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />
