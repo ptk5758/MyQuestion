@@ -1,7 +1,17 @@
 import { Component } from 'react';
+import { Modal } from './Modal';
+import App from '../App';
 
 class QuestionBookInsert extends Component
 {
+    constructor(props)
+    {
+        super(props);
+        this.state={
+            
+        }
+    }
+
     render()
     {
         return(
@@ -14,7 +24,7 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add'>+ 추가하기</span>
+                    <span className='add' onClick={() => {this.props.setModal()}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
                     <QuestionBtn/>
@@ -46,6 +56,34 @@ class QuestionBtn extends Component
             <span className='one_question'>•사과 영어로 스펠링은?</span>
             <span className='cancelbtn'>취소</span>
         </div>
+        );
+    }
+}
+
+class M1 extends Component
+{
+    render()
+    {
+        return(
+            <div>m1</div>
+        );
+    }
+}
+class M2 extends Component
+{
+    render()
+    {
+        return(
+            <div>m1</div>
+        );
+    }
+}
+class M3 extends Component
+{
+    render()
+    {
+        return(
+            <div>m1</div>
         );
     }
 }
