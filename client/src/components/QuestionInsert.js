@@ -63,7 +63,14 @@ class QuestionInsert extends Component
     {
         e.preventDefault();
         this.questionAdd()
-        .then(res=>{console.log(res);});
+        .then(res=>{
+            console.log(res);
+            if(res.status === 200)
+            {
+                alert("문제가 등록되었습니다.");
+                window.location.href = "question";
+            }
+        });
     }
     // 서브밋
     questionAdd()
