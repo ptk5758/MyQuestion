@@ -24,7 +24,7 @@ class QuestionBookInsert extends Component
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add'>+ 추가하기</span>
+                    <span className='add' onClick={() => {this.props.setModal()}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
                     <QuestionBtn/>
@@ -36,9 +36,9 @@ class QuestionBookInsert extends Component
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
                     <div className='color-list'>
-                        <p className='color' onClick={() => {this.props.setModal(<M1/>)}}>m1</p>
-                        <p className='color'>m2</p>
-                        <p className='color'>m3</p>
+                        <p className='color'></p>
+                        <p className='color'></p>
+                        <p className='color'></p>
                         <p className='color'></p>
                     </div>
                 </div>

@@ -24,7 +24,10 @@ class App extends Component
 
   setModal(component){
     this.setState({modal_component:component, isModal:true});
+  }
 
+  closeModal(){
+    this.setState({isModal:false});
   }
 
   render()
@@ -32,7 +35,7 @@ class App extends Component
     // route 의 속성 path 는 대소문자 구문안함
     return(
       <div>
-        <Modal isModal={this.state.isModal}/>
+        <Modal isModal={this.state.isModal} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
           <Header/>
           <div className='content'>
