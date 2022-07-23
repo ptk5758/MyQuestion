@@ -11,6 +11,8 @@ import Header from './components/Header';
 import Main from './components/Main';
 import { Modal } from './components/Modal';
 
+import { QuestionView } from './components/QuestionView';
+
 class App extends Component
 {
   constructor(props)
@@ -32,6 +34,7 @@ class App extends Component
 
   render()
   {
+    //let ele = QuestionView();
     // route 의 속성 path 는 대소문자 구문안함
     return(
       <div>
@@ -42,9 +45,11 @@ class App extends Component
           <Routes>
             <Route path='' element={<Main/>} />
             <Route path='Question' element={<Question/>} />
+            <Route path='Question/:uid' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert setModal={this.setModal.bind(this)}/>}/>
+            <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>
         </BrowserRouter>

@@ -18,6 +18,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
+    res.send("Hello World");
+});
+
+app.get("/question", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');  
     
     let q = "select * from question"
     conn.query(q, (error, rows, field) => {
@@ -29,8 +34,8 @@ app.get("/", (req, res) => {
 
 app.post("/question", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
-    let query = `insert into question (question, mode) values ("${req.body.subject}", ${req.body.type})`;
-    conn.query(query, (err, row, fields)=>{
+    let query = `insert into question (question, mode, datetime) values ("${req.body.subject}", ${req.body.type}, now())`;
+    conn.query(query, (err, row, fields)=>{        
         let uid = row.insertId;
         let answers = req.body.answers;
         answers.map(obj =>{
@@ -39,6 +44,7 @@ app.post("/question", (req, res) => {
             conn.query(answer_query, (err, _row) => {
                 if(err)
                     console.log(err);
+                row.answers = _row;
             });
         });
         res.send(row);
