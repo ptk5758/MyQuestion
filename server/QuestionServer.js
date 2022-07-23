@@ -31,6 +31,16 @@ app.post("/question", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
     let query = `insert into question (question, mode) values ("${req.body.subject}", ${req.body.type})`;
     conn.query(query, (err, row, fields)=>{
+        let uid = row.insertId;
+        let answers = req.body.answers;
+        answers.map(obj =>{
+            let answer = obj.isAnswer === "true" ? 1 : 0;
+            let answer_query = `insert into answers (question, answer, isAnswer) VALUES (${uid}, "${obj.question}", ${answer})`;
+            conn.query(answer_query, (err, _row) => {
+                if(err)
+                    console.log(err);
+            });
+        });
         res.send(row);
     });
 });
