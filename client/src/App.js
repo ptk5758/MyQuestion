@@ -33,6 +33,7 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
+            <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>
         </BrowserRouter>

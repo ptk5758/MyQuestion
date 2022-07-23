@@ -1,5 +1,5 @@
 import { Component } from 'react';
-
+import { Link } from 'react-router-dom';
 class Question extends Component
 {
   constructor(props)
@@ -16,7 +16,7 @@ class Question extends Component
   }
   componentDidMount()
   {
-    fetch("http://localhost:5000")
+    fetch("http://localhost:5000/question")
     .then(res => res.json())
     .then(json =>{      
       this.setState({
@@ -25,17 +25,18 @@ class Question extends Component
     });
   }
   render()
-  {    
+  {        
     return(
       <div className='question_main' >
         <div className='question_list'>          
           {this.state.questions.map((item, index) => {
-            return <p className='question' key={index}>{item.question}</p>
+            console.log(item);
+            return <Link to={/question/+item.uid}><p className='question' key={index}>{item.question}</p></Link>
           })}
         </div>
         
         <div className='btn'>
-          <button className='regist_btn'>등록하기</button>
+          <button className='regist_btn' onClick={()=>{window.location.href="/questioninsert"}}>등록하기</button>
         </div>
       </div>
     );
