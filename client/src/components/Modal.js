@@ -6,7 +6,24 @@ class Modal extends Component
     {
         super(props);
         this.state={
+            questions: [
+                {
+                  uid: 0,
+                  question: ""
+                }
+            ]
         }
+    }
+
+    componentDidMount()
+    {
+        fetch("http://localhost:5000")
+        .then(res => res.json())
+        .then(json =>{      
+        this.setState({
+            questions : json
+            });      
+        });
     }
 
     render()
@@ -26,20 +43,13 @@ class Modal extends Component
                 </div>
                 <p className="division"></p>
                 <div className="question-regist">
-                    <span className="questionlist">• 사과 영어로 스펠링은?</span>
-                    <span className="registbtn">등록</span>
-                    </div>
-                <div className="question-regist">
-                    <span className="questionlist">• 사과 영어로 스펠링은?</span>
-                    <span className="registbtn">등록</span>  
-                </div>
-                <div className="question-regist">
-                    <span className="questionlist">• 사과 영어로 스펠링은?</span>
-                    <span className="registbtn">등록</span>
-                    </div>
-                <div className="question-regist">
-                    <span className="questionlist">• 사과 영어로 스펠링은?</span>
-                    <span className="registbtn">등록</span>  
+                    {this.state.questions.map((item, index) => {
+                        return( 
+                        <div className="question-regist-item">
+                            <p className='questionlist' key={index}>{item.question}</p>
+                            <span className="registbtn">등록</span>
+                        </div>)
+                    })}
                 </div>
                   {this.props.content}
               </div>

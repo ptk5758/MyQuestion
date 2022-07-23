@@ -123,6 +123,11 @@
     margin-left: 20%;
     color: #7ecef4; background-color: #ffffff; border: 1px solid #7ecef4; border-radius: 0.3rem; padding: 0.2rem 0.5rem;
 }
+
+.question-regist-item{
+    display: flex;
+    align-content: center;
+}
 /* 모달 */
 
 /*ptk*/
