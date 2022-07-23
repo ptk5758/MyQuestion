@@ -9,6 +9,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import QuestionInsert from './components/QuestionInsert';
 import Header from './components/Header';
 import Main from './components/Main';
+import { Modal } from './components/Modal';
 
 import { QuestionView } from './components/QuestionView';
 
@@ -18,15 +19,26 @@ class App extends Component
   {
     super(props);
     this.state = {
-      
+      modal_component:"",
+      isModal:false
     }
   }
+
+  setModal(component){
+    this.setState({modal_component:component, isModal:true});
+  }
+
+  closeModal(){
+    this.setState({isModal:false});
+  }
+
   render()
   {
     //let ele = QuestionView();
     // route 의 속성 path 는 대소문자 구문안함
     return(
       <div>
+        <Modal isModal={this.state.isModal} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
           <Header/>
           <div className='content'>
@@ -36,7 +48,7 @@ class App extends Component
             <Route path='Question/:uid' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
-            <Route path='QuestionBookInsert' element={<QuestionBookInsert/>}/>
+            <Route path='QuestionBookInsert' element={<QuestionBookInsert setModal={this.setModal.bind(this)}/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>
@@ -45,5 +57,6 @@ class App extends Component
     );
   }  
 }
+
 
 export default App;
