@@ -15,7 +15,7 @@ class Modal extends Component
             <div className={this.props.isModal ? "modal open" : "modal"}>                
                 <div className="modal-content">
                     <div className="modal-header">
-                        <span className="modal-header-title">• 모달타이틀</span>
+                        <span className="modal-header-title">• {this.props.title}</span>
                         <span className="modal-close-btn" onClick={()=>{this.props.closeModal()}}>X</span>
                     </div>
                     {this.props.content}

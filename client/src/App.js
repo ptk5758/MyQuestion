@@ -20,12 +20,13 @@ class App extends Component
     super(props);
     this.state = {
       modal_component:"",
-      isModal:false
+      isModal:false,
+      modal_title: ""
     }
   }  
-  openModal(component)
+  openModal(component, title)
   {
-    this.setState({modal_component : component, isModal: true});
+    this.setState({modal_component : component, isModal: true, modal_title: title});
   }
   closeModal()
   {
@@ -38,7 +39,7 @@ class App extends Component
     // route 의 속성 path 는 대소문자 구문안함
     return(
       <div>
-        <Modal isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
+        <Modal title={this.state.modal_title} isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
           <Header/>
           <div className='content'>
