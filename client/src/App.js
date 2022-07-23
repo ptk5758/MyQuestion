@@ -44,7 +44,6 @@ class App extends Component
         <Modal title={this.state.modal_title} isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
           <Header/>
-          <Modal/>
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />
