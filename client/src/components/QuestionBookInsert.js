@@ -50,7 +50,13 @@ class QuestionBookInsert extends Component
         }
         let qs = require('qs');        
         axios.post(url, qs.stringify(data))
-        .then(res=>{console.log(res);});
+        .then(res=>{
+            if(res.status === 200)
+            {
+                alert("문제가 등록되었습니다.");
+                window.location.href = "questionbook";
+            }
+        });
     }
 
     subjectValueChange(e)    
