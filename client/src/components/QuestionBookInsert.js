@@ -7,8 +7,8 @@ class QuestionBookInsert extends Component
     constructor(props)
     {
         super(props);
-        this.state={            
-
+        this.state={
+            questions : []
         }
     }
 
@@ -27,11 +27,9 @@ class QuestionBookInsert extends Component
                     <span className='add' onClick={()=>{this.props.openModal(<QuestionBookInsertModal/>, "문제등록하기")}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
+                    {this.state.questions[0] ? this.state.questions.map((obj, index) => {
+                        return <QuestionItem/>
+                    }) : <div className='question-item'>• 문제를 등록하여 주세요</div>}
                 </div>
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
@@ -46,7 +44,18 @@ class QuestionBookInsert extends Component
         );
     }
 }
+class QuestionItem extends Component
+{
+    render()
+    {
+        return (
+            <div className='question-item'>
+                • OS가 아닌것은
+            </div>
+        );
+    }
 
+}
 class QuestionBtn extends Component
 {
     render()

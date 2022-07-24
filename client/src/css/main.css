@@ -193,6 +193,7 @@
     margin-bottom: 9%;
     margin-top: 5%;
 }
+.question_list > .question-item { padding: 0.4rem 0.8rem; }
 
 .now_question{
     padding-top: 3%;
