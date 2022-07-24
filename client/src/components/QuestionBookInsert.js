@@ -1,37 +1,87 @@
 import { Component } from 'react';
 import { Modal } from './Modal';
 import App from '../App';
+import axios from 'axios';
 
 class QuestionBookInsert extends Component
 {
     constructor(props)
     {
         super(props);
-        this.state={            
-
+        this.state={
+            questions : [],
+            subject: ""
         }
     }
 
-    render()
+    addQuestion(obj)
     {
+        for(let i=0; i<this.state.questions.length; i++)
+        {
+            if(obj.uid === this.state.questions[i].uid)
+            {                
+                return;
+            }
+        }
+
+        this.setState({questions: [...this.state.questions, obj]});
+    }
+    cancelQuestion(index)
+    {
+        //console.log(index);
+        //console.log(this.state.questions[index]);
+
+        let arr = [...this.state.questions];
+        arr.splice(index,1);
+        this.setState({
+            questions: [...arr]
+        });
+    }
+
+    submitQuestionBook()
+    {
+        console.log("전송!");        
+        let url = "http://localhost:5000/questionbook";
+        let data = this.state;
+        let header = {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }
+        let qs = require('qs');        
+        axios.post(url, qs.stringify(data))
+        .then(res=>{
+            if(res.status === 200)
+            {
+                alert("문제가 등록되었습니다.");
+                window.location.href = "questionbook";
+            }
+        });
+    }
+
+    subjectValueChange(e)    
+    {
+        this.setState({subject: e.target.value});
+    }
+
+    render()
+    {        
         return(
             <div className='insert_main'>
                 <div className='subject'>
                     <span className='title'>• 제목</span>
                 </div>
                 <div className='input'>
-                    <input className='input_title' type='text' placeholder='제목을 입력해주세요.'></input>
+                    <input className='input_title' type='text' placeholder='제목을 입력해주세요.' onChange={this.subjectValueChange.bind(this)}/>
                 </div>
                 <div className='subject'>
                     <span className='title'>• 현재 문제</span>
-                    <span className='add' onClick={()=>{this.props.openModal(<QuestionBookInsertModal/>, "문제등록하기")}}>+ 추가하기</span>
+                    <span className='add' onClick={()=>{this.props.openModal(<QuestionBookInsertModal addQuestion={this.addQuestion.bind(this)}/>, "문제등록하기")}}>+ 추가하기</span>
                 </div>
                 <div className='question_list'>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
-                    <QuestionBtn/>
+                    {this.state.questions[0] ? this.state.questions.map((obj, index) => {
+                        return <QuestionItem key={index} question={obj} cancelQuestion={this.cancelQuestion.bind(this)} index={index}/>
+                    }) : <div className='question-item'>• 문제를 등록하여 주세요</div>}
                 </div>
                 <div className='color_select'>
                     <span className='title'>• 표지</span>
@@ -42,11 +92,33 @@ class QuestionBookInsert extends Component
                         <p className='color'></p>
                     </div>
                 </div>
+                <div className="question-submit">
+                    <button onClick={this.submitQuestionBook.bind(this)}>
+                        등록하기
+                    </button>
+                </div>
             </div>
         );
     }
 }
+class QuestionItem extends Component
+{
+    render()
+    {
+        let obj = this.props.question;
+        return (
+            <div className='question-item'>
+                <div className='question-item-subject'>
+                    • {obj.question}
+                </div>
+                <button className='question-item-btn' onClick={() => {this.props.cancelQuestion(this.props.index);}}>
+                    취소
+                </button>
+            </div>
+        );
+    }
 
+}
 class QuestionBtn extends Component
 {
     render()
@@ -94,8 +166,8 @@ class QuestionBookInsertModal extends Component
                         {this.state.questions.map((obj,index) => {
                             return(
                                 <div className="question-regist-item" key={index}>
-                                    <span className='questionlist' >{obj.question}</span>
-                                    <span className="registbtn">등록</span>
+                                    <span className='questionlist'>{obj.question}</span>
+                                    <span className="registbtn" onClick={()=>{this.props.addQuestion(obj)}}>등록</span>
                                 </div>
                             );                            
                         })}                    
