@@ -193,7 +193,8 @@
     margin-bottom: 9%;
     margin-top: 5%;
 }
-.question_list > .question-item { padding: 0.4rem 0.8rem; }
+.question_list > .question-item { padding: 0.4rem 0.8rem; display: flex; justify-content: space-between; align-items: center;}
+.question_list > .question-item > .question-item-btn { background-color: #ff2d2d; color: #f1f1f1; font-weight: bold;}
 
 .now_question{
     padding-top: 3%;
