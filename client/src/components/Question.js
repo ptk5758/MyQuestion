@@ -1,7 +1,10 @@
 import { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Question extends Component
 {
+
+  
   constructor(props)
   {
     super(props);
@@ -14,9 +17,11 @@ class Question extends Component
       ]
     }
   }
+
   componentDidMount()
   {
-    fetch("http://localhost:5000")
+    console.log(window.location);
+    fetch("http://localhost:5000/question")
     .then(res => res.json())
     .then(json =>{      
       this.setState({
@@ -24,18 +29,19 @@ class Question extends Component
       });      
     });
   }
+
   render()
-  {    
-    return(
+  {            
+    return(      
       <div className='question_main' >
         <div className='question_list'>          
           {this.state.questions.map((item, index) => {
-            return <p className='question' key={index}>{item.question}</p>
+            return <Link to={"/question/view?uid="+item.uid}><p className='question' key={index}>{item.question}</p></Link>
           })}
         </div>
         
         <div className='btn'>
-          <button className='regist_btn'>등록하기</button>
+          <button className='regist_btn' onClick={()=>{window.location.href="/questioninsert"}}>등록하기</button>
         </div>
       </div>
     );
@@ -62,7 +68,7 @@ class QuestionLatest extends Component
 class QuestionItem extends Component
 {
   render()
-  {
+  {    
     return(
         <div className="item">
             <span className="question-subject">{this.props.subject}</span>
@@ -71,4 +77,5 @@ class QuestionItem extends Component
     )
   }
 }
+
 export { Question, QuestionLatest, QuestionItem };
