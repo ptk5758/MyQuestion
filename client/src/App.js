@@ -45,7 +45,7 @@ class App extends Component
           <Routes>
             <Route path='' element={<Main/>} />
             <Route path='Question' element={<Question/>} />
-            <Route path='Question/:uid' element={<QuestionView/>}/>
+            <Route path='Question/view' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert setModal={this.setModal.bind(this)}/>}/>
