@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Modal } from './Modal';
 import App from '../App';
+import axios from 'axios';
 
 class QuestionBookInsert extends Component
 {
@@ -36,10 +37,22 @@ class QuestionBookInsert extends Component
             questions: [...arr]
         });
     }
+
     submitQuestionBook()
     {
-        console.log(this.state);        
+        console.log("전송!");        
+        let url = "http://localhost:5000/questionbook";
+        let data = this.state;
+        let header = {
+            headers : {
+                "Content-Type" : "application/json"
+            }
+        }
+        let qs = require('qs');        
+        axios.post(url, qs.stringify(data))
+        .then(res=>{console.log(res);});
     }
+
     subjectValueChange(e)    
     {
         this.setState({subject: e.target.value});

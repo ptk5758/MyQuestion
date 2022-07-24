@@ -53,7 +53,7 @@ app.post("/question", (req, res) => {
 
 
 app.post("/questionbook", (req, res) => {
-    console.log(req.body);
+    res.setHeader('Access-Control-Allow-origin', '*');    
     let str = "";
     for(let i=0; i<req.body.questions.length; i++)
     {
