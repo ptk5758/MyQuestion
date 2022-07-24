@@ -50,6 +50,7 @@
 
 .question-submit { display: flex; justify-content: center;}
 .question-submit > button {width: 40%; border-radius: 1rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 0.7rem; font-weight: bold;}
+
 /* 문제 등록 */
 
 /* 문제집 */
@@ -122,6 +123,11 @@
 .registbtn{
     margin-left: 20%;
     color: #7ecef4; background-color: #ffffff; border: 1px solid #7ecef4; border-radius: 0.3rem; padding: 0.2rem 0.5rem;
+}
+
+.registbtn:active
+{
+    color: #ffffff; background-color: #7ecef4;
 }
 
 .question-regist-item{
