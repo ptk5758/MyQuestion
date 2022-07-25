@@ -18,14 +18,13 @@ class QuestionView extends Component
           uid: 0,
           question: ""
         }
-      ],    
+      ] 
     }
   }
 
   componentDidMount()
   {
     let params = queryString.parse(window.location.search);
-    console.log(params);
     fetch("http://localhost:5000/question/"+params.uid)
     .then(res => res.json())
     .then(json =>{   
@@ -40,9 +39,15 @@ class QuestionView extends Component
         return(
             <div className="question-title">
                 • 문제 : &nbsp;
-                {this.state.questions.map((item, index) => {
-                  return <span>{item.question}</span>
+                {this.state.questions.map((item) => {
+                  return <span className='this-question'>{item.question}</span>
                 })}
+                <div className="regist-title">
+                  • 등록시간 : &nbsp;
+                  {this.state.questions.map((item) => {
+                    return <span className='this-answer'>{item.datetime}</span>
+                  })}
+                </div>
             </div>
         );
     }

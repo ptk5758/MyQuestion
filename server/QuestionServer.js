@@ -32,6 +32,17 @@ app.get("/question", (req, res) => {
     });
 });
 
+app.get("/answer", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    
+    let q = "select * from answers"
+    conn.query(q, (error, rows, field) => {
+        if(error)
+            console.log(error);
+        res.send(rows);
+    });
+});
+
 app.get("/question/:uid", (req, res) =>{
     res.setHeader('Access-Control-Allow-origin', '*');  
 
@@ -82,30 +93,8 @@ app.post("/questionbook", (req, res) => {
             console.log(err);
         } 
         res.send(rows);
-    });    
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.get("/book", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
@@ -114,7 +103,7 @@ app.get("/book", (req, res) => {
     conn.query(q, (error, rows, field) => {
         if(error)
             console.log(error);
-        res.send(rows)
+        res.send(rows);
     });
 });
 
