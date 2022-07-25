@@ -1,10 +1,10 @@
-const bodyParser = require('body-parser');
 let express = require("express");
 let app = express();
-app.use(function(req,res,next){
-    app.test = "asd";    
-    next();
-});
+const bodyParser = require('body-parser');
+// app.use(function(req,res,next){ //미들웨어 원리
+//     app.test = "asd";    
+//     next();
+// });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -13,52 +13,13 @@ app.get("/", (req, res) => {
     res.send("Hello World");
 });
 
-app.get("/question", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');  
-    const conn = require('./conn');
-    let q = "select * from question"
-    conn.query(q, (error, rows, field) => {
-        if(error)
-            console.log(error);
-        res.send(rows);
-    });
-});
+// 문제 API Router
+const question = require('./question');
+app.use("/question", question);
 
-app.get("/question/:uid", (req, res) =>{
-    res.setHeader('Access-Control-Allow-origin', '*');  
-    const conn = require('./conn');
-    let uid = req.params.uid;
-    let q = "select * from question where uid like " + uid;
-    conn.query(q, (error, rows, fields) => {
-        if(error)
-            console.log(error);
-        res.send(rows);
-    });
-});
-
-app.post("/question", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');
-    const conn = require('./conn');
-    let query = `insert into question (question, mode, datetime) values ("${req.body.subject}", ${req.body.type}, now())`;
-    conn.query(query, (err, row, fields)=>{        
-        let uid = row.insertId;
-        let answers = req.body.answers;
-        answers.map(obj =>{
-            let answer = obj.isAnswer === "true" ? 1 : 0;
-            let answer_query = `insert into answers (question, answer, isAnswer) VALUES (${uid}, "${obj.question}", ${answer})`;
-            conn.query(answer_query, (err, _row) => {
-                if(err)
-                    console.log(err);
-                row.answers = _row;
-            });
-        });
-        res.send(row);
-    });
-});
-
+// 문제집 API Router
 const book = require('./book');
 app.use("/book", book);
-
 
 
 app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
