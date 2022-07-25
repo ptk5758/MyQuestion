@@ -1,21 +1,13 @@
-const fs = require('fs');
-const df = fs.readFileSync('./database.json');
-const database = JSON.parse(df);
 const bodyParser = require('body-parser');
 let express = require("express");
-let mysql = require("mysql");
-let conn = mysql.createConnection({
-    host: database.host,
-    user: database.user,
-    password: database.password,
-    database: database.database,
-    port: database.port
-});
-conn.connect();
-
 let app = express();
+app.use(function(req,res,next){
+    app.test = "asd";    
+    next();
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
     res.send("Hello World");
@@ -23,7 +15,7 @@ app.get("/", (req, res) => {
 
 app.get("/question", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
-    
+    const conn = require('./conn');
     let q = "select * from question"
     conn.query(q, (error, rows, field) => {
         if(error)
@@ -34,7 +26,7 @@ app.get("/question", (req, res) => {
 
 app.get("/question/:uid", (req, res) =>{
     res.setHeader('Access-Control-Allow-origin', '*');  
-
+    const conn = require('./conn');
     let uid = req.params.uid;
     let q = "select * from question where uid like " + uid;
     conn.query(q, (error, rows, fields) => {
@@ -46,6 +38,7 @@ app.get("/question/:uid", (req, res) =>{
 
 app.post("/question", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
+    const conn = require('./conn');
     let query = `insert into question (question, mode, datetime) values ("${req.body.subject}", ${req.body.type}, now())`;
     conn.query(query, (err, row, fields)=>{        
         let uid = row.insertId;
@@ -63,64 +56,12 @@ app.post("/question", (req, res) => {
     });
 });
 
-
-app.post("/questionbook", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');    
-    let str = "";
-    for(let i=0; i<req.body.questions.length; i++)
-    {
-        str += req.body.questions[i].uid;
-        if(i+1 != req.body.questions.length)
-        {
-            str += ",";
-        }
-    }
-    let query = `INSERT INTO book (subject, questions, datetime) VALUES ("${req.body.subject}", "${str}", now())`;
-    conn.query(query, (err,rows) => {
-        if(err)
-        {
-            console.log(err);
-        } 
-        res.send(rows);
-    });    
-});
+const book = require('./book');
+app.use("/book", book);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-app.get("/book", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');  
-    
-    let q = "select * from book"
-    conn.query(q, (error, rows, field) => {
-        if(error)
-            console.log(error);
-        res.send(rows)
-    });
-});
-
-app.listen(5000, () =>{
-    console.log('5000번 포트로 서버가 열림');
-});
+app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
 
 // 기본 서버는 자기 자신의 IP 에만 통신을 허용해
 // 서버의 아이피는 localhost:5000
