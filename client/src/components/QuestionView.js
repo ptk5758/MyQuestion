@@ -48,6 +48,10 @@ class QuestionView extends Component
                     return <span className='this-answer'>{item.datetime}</span>
                   })}
                 </div>
+                <div className='answer-title'>
+                  • 답 : &nbsp;
+                  
+                </div>
             </div>
         );
     }
