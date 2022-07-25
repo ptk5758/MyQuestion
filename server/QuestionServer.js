@@ -51,6 +51,50 @@ app.post("/question", (req, res) => {
     });
 });
 
+
+app.post("/questionbook", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');    
+    let str = "";
+    for(let i=0; i<req.body.questions.length; i++)
+    {
+        str += req.body.questions[i].uid;
+        if(i+1 != req.body.questions.length)
+        {
+            str += ",";
+        }
+    }
+    let query = `INSERT INTO book (subject, questions, datetime) VALUES ("${req.body.subject}", "${str}", now())`;
+    conn.query(query, (err,rows) => {
+        if(err)
+        {
+            console.log(err);
+        } 
+        res.send(rows);
+    });    
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.get("/book", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
     
