@@ -28,7 +28,19 @@ app.get("/question", (req, res) => {
     conn.query(q, (error, rows, field) => {
         if(error)
             console.log(error);
-        res.send(rows)
+        res.send(rows);
+    });
+});
+
+app.get("/question/:uid", (req, res) =>{
+    res.setHeader('Access-Control-Allow-origin', '*');  
+
+    let uid = req.params.uid;
+    let q = "select * from question where uid like " + uid;
+    conn.query(q, (error, rows, fields) => {
+        if(error)
+            console.log(error);
+        res.send(rows);
     });
 });
 
