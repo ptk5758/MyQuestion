@@ -41,7 +41,7 @@ class QuestionBookInsert extends Component
     submitQuestionBook()
     {
         console.log("전송!");        
-        let url = "http://localhost:5000/questionbook";
+        let url = "http://localhost:5000/book";
         let data = this.state;
         let header = {
             headers : {
