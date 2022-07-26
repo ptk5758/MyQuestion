@@ -1,12 +1,20 @@
 let express = require("express");
 let app = express();
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const FileStore = require('session-file-store')(session);
 // app.use(function(req,res,next){ //미들웨어 원리
 //     app.test = "asd";    
 //     next();
 // });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    secret: "ptk test",
+    resave: false,
+    saveUninitialized: true,
+    store: new FileStore()
+}));
 
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
@@ -20,6 +28,10 @@ app.use("/question", question);
 // 문제집 API Router
 const book = require('./book');
 app.use("/book", book);
+
+// 로그인 API Router
+const member = require('./member');
+app.use("/member", member);
 
 
 app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
