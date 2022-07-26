@@ -12,20 +12,27 @@ router.get("/login", (req,res)=>{
 
 router.post("/login", (req,res) => {
     const result = {
-        code : 200
+        code    : 1,
+        msg     : "로그인 성공"
     }
     const { userId, userPass } = req.body;
     if(userId === developer.userId && userPass === developer.userPass)
     {
+        req.session.isLogin = true;
         req.session.userId = userId;
-        req.session.nickName = developer.nickName;        
-        //res.redirect("/");
-        result.msg = "성공";
+        req.session.nickName = developer.nickName;
+        const user = {
+            isLogin : true,
+            userId : userId,
+            nickName : developer.nickName
+        };
+
+        result.user = user;
     }
     else
     {
-        result.msg = "실패";
-        //console.log("실패");
+        result.code = 0;
+        result.msg = "로그인 실패";
     }
     res.send(result);
 });
