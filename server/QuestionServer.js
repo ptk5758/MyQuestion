@@ -2,7 +2,8 @@ let express = require("express");
 let app = express();
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const FileStore = require('session-file-store')(session);
+//const FileStore = require('session-file-store')(session); 로컬에 파일이 저장됨
+const MemoryStore = require('memorystore')(session);
 // app.use(function(req,res,next){ //미들웨어 원리
 //     app.test = "asd";    
 //     next();
@@ -13,8 +14,14 @@ app.use(session({
     secret: "ptk test",
     resave: false,
     saveUninitialized: true,
-    store: new FileStore()
+    store: new MemoryStore()
 }));
+
+// CORS 어쩌구 일괄 처리
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-origin', '*');
+    next();
+});
 
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  

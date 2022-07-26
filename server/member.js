@@ -1,24 +1,33 @@
 const router = require('express').Router();
 
-router.get("/login", (req,res)=>{    
-    console.log(req.session);
-    if(req.session.number === undefined)
-    {
-        req.session.number = 1;        
-    }
-    else
-    {
-        req.session.number++;
-    }
-    res.send(`number => ` + req.session.number);
+const developer = {
+    userId : "dev",
+    userPass : "1234",
+    nickName : "developer"
+}
+
+router.get("/login", (req,res)=>{        
+    res.send("대충 로그인페이지 ");
 });
 
 router.post("/login", (req,res) => {
-    const {userId, userPass} = req.body;
-    console.log("userId => " + userId);
-    console.log("userPass => " + userPass);    
-    console.log(req.session);
-    res.send("Hello Login");
+    const result = {
+        code : 200
+    }
+    const { userId, userPass } = req.body;
+    if(userId === developer.userId && userPass === developer.userPass)
+    {
+        req.session.userId = userId;
+        req.session.nickName = developer.nickName;        
+        //res.redirect("/");
+        result.msg = "성공";
+    }
+    else
+    {
+        result.msg = "실패";
+        //console.log("실패");
+    }
+    res.send(result);
 });
 
 module.exports = router;

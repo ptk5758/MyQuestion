@@ -13,7 +13,7 @@ import { Modal } from './components/Modal';
 
 import { QuestionView } from './components/QuestionView';
 
-
+import { Developer } from './components/Developer';
 class App extends Component
 {
   constructor(props)
@@ -52,6 +52,8 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
+            <Route path='developer' element={<Developer/>}/>
+            
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>
