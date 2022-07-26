@@ -28,9 +28,12 @@ class QuestionView extends Component
     }
   }
 
+
+
   componentDidMount()
   {
     let params = queryString.parse(window.location.search);
+    console.log(params);
     Promise.all([fetch('http://localhost:5000/question/'+params.uid)
     .then(res1=>res1.json()),
     fetch('http://localhost:5000/question/'+params.uid+'/answer')
