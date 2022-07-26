@@ -23,6 +23,18 @@ router.get("/:uid", (req, res) =>{
     });
 });
 
+router.get("/:uid/answer", (req, res) =>{
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    const conn = require('./conn');
+    let uid = req.params.uid;
+    let q = "select answer from answers as a, question as q where a.parent=q.uid and q.uid=" + uid;
+    conn.query(q, (error, rows, fields) => {
+        if(error)
+            console.log(error);
+        res.send(rows);
+    });
+});
+
 router.post("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
     const conn = require('./conn');
