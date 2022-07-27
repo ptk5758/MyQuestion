@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import axios from 'axios';
 
 // function QuestionView()
 // {    
@@ -33,7 +34,6 @@ class QuestionView extends Component
   componentDidMount()
   {
     let params = queryString.parse(window.location.search);
-    console.log(params);
     Promise.all([fetch('http://localhost:5000/question/'+params.uid)
     .then(res1=>res1.json()),
     fetch('http://localhost:5000/question/'+params.uid+'/answer')
@@ -44,6 +44,14 @@ class QuestionView extends Component
         answers: res2
       });
     });
+  }
+
+  deleteQuestion()
+  {
+    let params = queryString.parse(window.location.search);
+    const url = "http://localhost:5000/question";
+    const qs = require('qs');
+    return axios.delete(url, qs.stringify(params));
   }
 
     render()
@@ -67,7 +75,7 @@ class QuestionView extends Component
                   })}
                 </div>
                 <div className='deleteModifyBtn'>
-                  <span className='deleteBtn'>삭제</span>
+                  <span className='deleteBtn' onClick={this.deleteQuestion()}>삭제</span>
                   <span className='modifyBtn'>수정</span>
                 </div>
             </div>

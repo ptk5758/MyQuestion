@@ -35,6 +35,17 @@ router.get("/:uid/answer", (req, res) =>{
     });
 });
 
+router.delete("/", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*'); 
+    const conn = require('./conn');
+    let q = "delete from question where uid=" + req.body.uid;
+    conn.query(q, (err, row) => {
+        if(err)
+            console.log(err);
+        res.send(row);
+    })
+})
+
 router.post("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
     const conn = require('./conn');
@@ -54,5 +65,6 @@ router.post("/", (req, res) => {
         res.send(row);
     });
 });
+
 
 module.exports = router;
