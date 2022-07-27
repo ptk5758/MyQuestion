@@ -37,6 +37,12 @@ function Developer()
                 alert("로그인에 실패 하셧습니다.");
             }
         });
+    }    
+
+    const deleteTest = () => {
+        const url = "http://localhost:5000/answer/21";
+        axios.delete(url)
+        .then(res=>{console.log(res);});        
     }
     
     return (
@@ -51,6 +57,8 @@ function Developer()
                 setSessionId("");
                 window.localStorage.clear();
                 }}>LOOUT</button>
+
+            <button onClick={deleteTest}>DELETE 테스트 버튼</button>
         </div>
     );
 }

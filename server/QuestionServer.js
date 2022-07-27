@@ -1,5 +1,6 @@
 let express = require("express");
 let app = express();
+
 const bodyParser = require('body-parser');
 const session = require('express-session');
 //const FileStore = require('session-file-store')(session); 로컬에 파일이 저장됨
@@ -20,6 +21,7 @@ app.use(session({
 // CORS 어쩌구 일괄 처리
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-origin', '*');
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     next();
 });
 
@@ -39,6 +41,17 @@ app.use("/book", book);
 // 로그인 API Router
 const member = require('./member');
 app.use("/member", member);
+
+app.delete("/answer/:uid", (req, res)=>{
+    let uid = req.params.uid;
+    let query = `DELETE FROM answers WHERE uid = ${uid}`;
+    const conn = require('./conn');
+    conn.query(query,(err,rows) => {
+        if(err)
+            console.log(err);
+        res.send(rows);
+    });    
+});
 
 
 app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
