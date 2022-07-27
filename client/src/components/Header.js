@@ -4,8 +4,9 @@ class Header extends Component
 {
     render()
     {
+        //this.props.setHeader(true);
         return(
-            <div className='header'>
+            <div className={this.props.useHeader ? "header" : "header off"}>
                 <div className='box-left'><img src={left_arrow}/></div>
                 <div className='title'>
                     <span>문제집</span>

@@ -10,10 +10,9 @@ import QuestionInsert from './components/QuestionInsert';
 import Header from './components/Header';
 import Main from './components/Main';
 import { Modal } from './components/Modal';
-
 import { QuestionView } from './components/QuestionView';
-
 import { Developer } from './components/Developer';
+import { LoginComponent } from './components/login';
 class App extends Component
 {
   constructor(props)
@@ -22,7 +21,8 @@ class App extends Component
     this.state = {
       modal_component:"",
       isModal:false,
-      modal_title: ""
+      modal_title: "",
+      useHeader : true
     }
   }  
   openModal(component, title)
@@ -35,6 +35,11 @@ class App extends Component
     this.setState({isModal: false}); 
   }
 
+  setHeader(state)
+  {
+    this.setState({useHeader: state});
+  }
+
   render()
   {    
     //let ele = QuestionView();
@@ -43,10 +48,11 @@ class App extends Component
       <div>
         <Modal title={this.state.modal_title} isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
-          <Header/>
+          <Header useHeader={ this.state.useHeader } setHeader={this.setHeader.bind(this)}/>
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />
+            <Route path='login' element={ <LoginComponent setHeader={this.setHeader.bind(this)}/> } />
             <Route path='Question' element={<Question/>} />
             <Route path='Question/view' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />

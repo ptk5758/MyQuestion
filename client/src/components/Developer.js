@@ -41,7 +41,7 @@ function Developer()
     
     return (
         <div>            
-            <div>{sessionId ? sessionId : "로그인안되어있음"}</div>
+            <div>로그인 상태 : {sessionId ? sessionId+"님 어서오세요" : "로그인안되어있음"}</div>
             <label>ID : <input value={userId ? userId : ""} onChange={(e)=>{setUserId(e.target.value)}}/></label>
             <br></br>
             <label>PASS : <input value={userPass ? userPass : ""} onChange={(e)=>{setUserPass(e.target.value)}}/></label>
