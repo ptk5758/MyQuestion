@@ -48,10 +48,18 @@ class QuestionView extends Component
 
   deleteQuestion()
   {
-    let params = queryString.parse(window.location.search);
-    const url = "http://localhost:5000/question" + params;
-    
-    axios.delete(url);
+    if(window.confirm("삭제 하시겠습니까?") == true){
+      let params = queryString.parse(window.location.search);
+      console.log(params);
+      const qurl = "http://localhost:5000/question/" + params.uid;
+      const aurl = qurl + '/answer';
+  
+      axios.delete(aurl)
+      .then(res => {
+        axios.delete(qurl);
+      });
+      window.location.href="/question";
+    }
   }
 
     render()
@@ -76,7 +84,7 @@ class QuestionView extends Component
                 </div>
                 <div className='deleteModifyBtn'>
                   <span className='deleteBtn' onClick={() => {this.deleteQuestion()}}>삭제</span>
-                  <span className='modifyBtn'>수정</span>
+                  <span className='modifyBtn' onClick={() => {window.confirm("수정?")}}>수정</span>
                 </div>
             </div>
         );

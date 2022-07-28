@@ -8,6 +8,12 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use((req,res,next)=>{
+    res.setHeader('Access-Control-Allow-origin', '*');
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    next();
+});
+
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
     res.send("Hello World");
