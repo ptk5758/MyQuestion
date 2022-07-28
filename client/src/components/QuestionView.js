@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import axios from 'axios';
 
 // function QuestionView()
 // {    
@@ -18,21 +19,47 @@ class QuestionView extends Component
           uid: 0,
           question: ""
         }
-      ],    
+      ],
+      answers: [
+        {
+          uid: 0,
+          answer: ""
+        }
+      ]
     }
   }
+
+
 
   componentDidMount()
   {
     let params = queryString.parse(window.location.search);
-    console.log(params);
-    fetch("http://localhost:5000/question/"+params.uid)
-    .then(res => res.json())
-    .then(json =>{   
+    Promise.all([fetch('http://localhost:5000/question/'+params.uid)
+    .then(res1=>res1.json()),
+    fetch('http://localhost:5000/question/'+params.uid+'/answer')
+    .then(res2=>res2.json())])
+    .then(([res1, res2]) => {
       this.setState({
-        questions : json
-      });      
+        questions: res1,
+        answers: res2
+      });
     });
+  }
+
+  deleteQuestion()
+  {
+    if(window.confirm("삭제 하시겠습니까?") == true){
+      let params = queryString.parse(window.location.search);
+      console.log(params);
+      const qurl = "http://localhost:5000/question/" + params.uid;
+      const aurl = qurl + '/answer';
+  
+      axios.delete(aurl)
+      .then(res => {
+        axios.delete(qurl);
+      });
+      window.location.href="/question";
+    }
   }
 
     render()
@@ -40,12 +67,39 @@ class QuestionView extends Component
         return(
             <div className="question-title">
                 • 문제 : &nbsp;
-                {this.state.questions.map((item, index) => {
-                  return <span>{item.question}</span>
+                {this.state.questions.map((item) => {
+                  return <span className='this-question'>{item.question}</span>
                 })}
+                <div className="regist-title">
+                  • 등록시간 : &nbsp;
+                  {this.state.questions.map((item) => {
+                    return <span className='this-time'>{item.datetime}</span>
+                  })}
+                </div>
+                <div className='answer-title'>
+                  • 답 &nbsp;
+                  {this.state.answers.map((item) => {
+                    return <span className='this.answer'>{item.answer} &nbsp;</span>
+                  })}
+                </div>
+                <div className='deleteModifyBtn'>
+                  <span className='deleteBtn' onClick={() => {this.deleteQuestion()}}>삭제</span>
+                  <span className='modifyBtn' onClick={() => {this.props.openModal(<ModifyModal/>, "수정")}}>수정</span>
+                </div>
             </div>
         );
     }
 }
 
+class ModifyModal extends Component
+{
+  render()
+  {
+    return(
+      <div>asdf</div>
+    )
+  }
+    
+  
+}
 export { QuestionView } ;

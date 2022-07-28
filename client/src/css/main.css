@@ -50,6 +50,7 @@
 
 .question-submit { display: flex; justify-content: center;}
 .question-submit > button {width: 40%; border-radius: 1rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 0.7rem; font-weight: bold;}
+
 /* 문제 등록 */
 
 /* 문제집 */
@@ -124,10 +125,24 @@
     color: #7ecef4; background-color: #ffffff; border: 1px solid #7ecef4; border-radius: 0.3rem; padding: 0.2rem 0.5rem;
 }
 
+.registbtn:active
+{
+    color: #ffffff; background-color: #7ecef4;
+}
+
 .question-regist-item{
     display: flex;
-    align-content: center;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.3rem;
 }
+
+/* 모달-ptk */
+.modal-content > .modal-header {display: flex; padding: 1rem; justify-content: space-between; align-items: center;}
+.modal-content > .modal-header > .modal-header-title {font-weight: bold; font-size: 22px;}
+.modal-content > .modal-header > .modal-close-btn {font-weight: bold; font-size: 22px; padding: 2px 10px; color: #ff2d2d;}
+/* 모달-ptk */
+
 /* 모달 */
 
 /*ptk*/
@@ -184,6 +199,8 @@
     margin-bottom: 9%;
     margin-top: 5%;
 }
+.question_list > .question-item { padding: 0.4rem 0.8rem; display: flex; justify-content: space-between; align-items: center;}
+.question_list > .question-item > .question-item-btn { background-color: #ff2d2d; color: #f1f1f1; font-weight: bold;}
 
 .now_question{
     padding-top: 3%;
@@ -212,3 +229,7 @@
 }
 
 
+/*문제 상세정보*/
+.deleteModifyBtn{ padding: 33%;}
+.deleteBtn { background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
+.modifyBtn { background-color: #7ecef4; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }

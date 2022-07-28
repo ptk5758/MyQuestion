@@ -20,7 +20,6 @@ class Question extends Component
 
   componentDidMount()
   {
-    console.log(window.location);
     fetch("http://localhost:5000/question")
     .then(res => res.json())
     .then(json =>{      
