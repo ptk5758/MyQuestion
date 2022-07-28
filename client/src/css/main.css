@@ -235,6 +235,7 @@
 .login-modal .login-form input {font-size: 18px; border-radius: 0px; border: 1px solid #000000}
 .login-modal .login-form button {width: 100%; border: 1px solid#000000; padding: 0.4rem 0.2rem; font-weight: bold; font-size: 18px; color: #f1f1f1; background-color: #383838;}
 
+
 .login-modal .simple-login {display: flex; align-items: center; flex-direction: column; margin-top: 2rem; font-size: 18px; font-weight: 500; align-self: stretch;}
 .login-modal .simple-login > div {margin-bottom: 0.6rem;}
 .simple-login .icon-group {display: flex; justify-content: space-around; width: 60%;}
@@ -243,3 +244,7 @@
 
 .login-modal .login-option {display: flex;}
 .login-option > div {margin: 0.5rem;}
+/*문제 상세정보*/
+.deleteModifyBtn{ padding: 33%;}
+.deleteBtn { background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
+.modifyBtn { background-color: #7ecef4; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }

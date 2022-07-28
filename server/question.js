@@ -23,7 +23,41 @@ router.get("/:uid", (req, res) =>{
     });
 });
 
-router.post("/", (req, res) => {    
+router.get("/:uid/answer", (req, res) =>{
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    const conn = require('./conn');
+    let uid = req.params.uid;
+    let q = "select answer from answers as a, question as q where a.parent=q.uid and q.uid=" + uid;
+    conn.query(q, (error, rows, fields) => {
+        if(error)
+            console.log(error);
+        res.send(rows);
+    });
+});
+
+router.delete("/:uid/answer", (req, res) => {
+    const conn = require('./conn');
+    let q = "delete from answers where uid=" + req.params.uid;
+    conn.query(q, (err, row) =>{
+        if(err)
+            console.log(err);
+        res.send(row);
+    })
+})
+
+router.delete("/:uid", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*'); 
+    const conn = require('./conn');
+    let q = "delete from question where uid=" + req.params.uid;
+    conn.query(q, (err, row) => {
+        if(err)
+            console.log(err);
+        res.send(row);
+    });
+});
+
+router.post("/", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');
     const conn = require('./conn');
     let query = `insert into question (question, mode, datetime) values ("${req.body.subject}", ${req.body.type}, now())`;
     conn.query(query, (err, row, fields)=>{        
@@ -41,5 +75,6 @@ router.post("/", (req, res) => {
         res.send(row);
     });
 });
+
 
 module.exports = router;

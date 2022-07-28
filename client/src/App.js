@@ -62,8 +62,7 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
-            <Route path='developer' element={<Developer/>}/>
-            
+            <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>
