@@ -1,7 +1,26 @@
-import React, { useEffect } from "react";
-
+import React, { useEffect, useState } from "react";
+import axios from 'axios';
+import qs from 'qs';
 function LoginComponent(props)
 {    
+    const [userId, setUserId] = useState("");
+    const [userPass, setUserPass] = useState("");
+
+    const loginSubmit = () => {
+        sendUserInfo()
+        .then(res=>{console.log(res);});
+    }
+
+    const sendUserInfo = () => {        
+        const url = "http://localhost:5000/member/login";
+        const data = {
+            userId: userId,
+            userPass: userPass
+        }
+        return axios.post(url, qs.stringify(data));
+    }
+
+
     useEffect(()=>{
         //props.setHeader(false);
     },[]);
@@ -9,13 +28,13 @@ function LoginComponent(props)
         <div className="login-modal">
             <div className="login-form">
                 <div className="login-item">
-                    <label><input/></label>
+                    <label><input value={userId} onChange={(e)=>{setUserId(e.target.value)}} /></label>
                 </div>
                 <div className="login-item">
-                    <label><input/></label>
+                    <label><input value={userPass} onChange={(e)=>{setUserPass(e.target.value)}} /></label>
                 </div>
                 <div className="login-item">
-                    <button>로그인</button>
+                    <button onClick={loginSubmit}>로그인</button>
                 </div>
             </div>
             <div className="simple-login">
@@ -27,6 +46,10 @@ function LoginComponent(props)
                     <a>구</a>
                     <a>카</a>                    
                 </div>
+            </div>
+            <div className="login-option">
+                <div><a>아이디 찾기</a></div>
+                <div><a>회원가입</a></div>
             </div>
         </div>
     );

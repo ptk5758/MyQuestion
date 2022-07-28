@@ -1,3 +1,5 @@
+const conn = require('./conn');
+
 const router = require('express').Router();
 
 const developer = {
@@ -16,25 +18,26 @@ router.post("/login", (req,res) => {
         msg     : "로그인 성공"
     }
     const { userId, userPass } = req.body;
-    if(userId === developer.userId && userPass === developer.userPass)
-    {
-        req.session.isLogin = true;
-        req.session.userId = userId;
-        req.session.nickName = developer.nickName;
-        const user = {
-            isLogin : true,
-            userId : userId,
-            nickName : developer.nickName
-        };
 
-        result.user = user;
-    }
-    else
-    {
-        result.code = 0;
-        result.msg = "로그인 실패";
-    }
-    res.send(result);
+    let sql = `SELECT count(*) as count FROM member WHERE id="${userId}" AND pass="${userPass}"`;
+    conn.query(sql, (err, rows)=>{
+        if(err)
+        {
+            console.log(err);
+        }
+        if(rows[0].count)
+        {
+            result.user = {
+                userId : userId
+            }
+        }
+        else
+        {
+            result.msg = "로그인 실패";
+            result.code = 0;
+        }
+        res.send(result);
+    });
 });
 
 module.exports = router;
