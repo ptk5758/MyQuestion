@@ -43,8 +43,8 @@ router.delete("/", (req, res) => {
         if(err)
             console.log(err);
         res.send(row);
-    })
-})
+    });
+});
 
 router.post("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');
