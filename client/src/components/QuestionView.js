@@ -84,11 +84,22 @@ class QuestionView extends Component
                 </div>
                 <div className='deleteModifyBtn'>
                   <span className='deleteBtn' onClick={() => {this.deleteQuestion()}}>삭제</span>
-                  <span className='modifyBtn' onClick={() => {window.confirm("수정?")}}>수정</span>
+                  <span className='modifyBtn' onClick={() => {this.props.openModal(<ModifyModal/>, "수정")}}>수정</span>
                 </div>
             </div>
         );
     }
 }
 
+class ModifyModal extends Component
+{
+  render()
+  {
+    return(
+      <div>asdf</div>
+    )
+  }
+    
+  
+}
 export { QuestionView } ;
