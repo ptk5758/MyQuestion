@@ -48,11 +48,15 @@ class App extends Component
       <div>
         <Modal title={this.state.modal_title} isModal={this.state.isModal} content={this.state.modal_component} closeModal={this.closeModal.bind(this)}/>
         <BrowserRouter>
-          <Header useHeader={ this.state.useHeader } setHeader={this.setHeader.bind(this)}/>
+          <Header 
+            useHeader={ this.state.useHeader }
+            setHeader={this.setHeader.bind(this)}
+            openModal={this.openModal.bind(this)}
+          />
           <div className='content'>
           <Routes>
             <Route path='' element={<Main/>} />
-            <Route path='login' element={ <LoginComponent setHeader={this.setHeader.bind(this)}/> } />
+            {/* <Route path='login' element={ <LoginComponent setHeader={this.setHeader.bind(this)}/> } /> */}
             <Route path='Question' element={<Question/>} />
             <Route path='Question/view' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
