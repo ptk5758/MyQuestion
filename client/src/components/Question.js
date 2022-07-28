@@ -1,7 +1,10 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 class Question extends Component
 {
+
+  
   constructor(props)
   {
     super(props);
@@ -14,8 +17,10 @@ class Question extends Component
       ]
     }
   }
+
   componentDidMount()
   {
+    console.log(window.location);
     fetch("http://localhost:5000/question")
     .then(res => res.json())
     .then(json =>{      
@@ -24,14 +29,14 @@ class Question extends Component
       });      
     });
   }
+
   render()
   {            
     return(      
       <div className='question_main' >
         <div className='question_list'>          
           {this.state.questions.map((item, index) => {
-            console.log(item);
-            return <Link to={"/question/uid="+item.uid}><p className='question' key={index}>{item.question}</p></Link>
+            return <Link to={"/question/view?uid="+item.uid}><p className='question' key={index}>{item.question}</p></Link>
           })}
         </div>
         

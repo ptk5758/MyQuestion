@@ -2,7 +2,7 @@
 
 # 기타
 /spring_server
-
+*/sessions
 # dependencies
 /node_modules
 /.pnp
