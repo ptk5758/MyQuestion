@@ -65,7 +65,7 @@ router.post("/", (req, res) => {
         let answers = req.body.answers;
         answers.map(obj =>{
             let answer = obj.isAnswer === "true" ? 1 : 0;
-            let answer_query = `insert into answers (parent, answer, isAnswer) VALUES (${uid}, "${obj.question}", ${answer})`;
+            let answer_query = `insert into answers (parent, answer, isAnswer) VALUES (${uid}, "${obj.question}", ${answer})`;            
             conn.query(answer_query, (err, _row) => {
                 if(err)
                     console.log(err);
