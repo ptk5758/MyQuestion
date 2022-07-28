@@ -23,9 +23,9 @@ function LoginComponent(props)
                     <span>간편로그인</span>
                 </div>
                 <div className="icon-group">
-                    <a>N</a>
-                    <a>G</a>
-                    <a>K</a>                    
+                    <a>네</a>
+                    <a>구</a>
+                    <a>카</a>                    
                 </div>
             </div>
         </div>

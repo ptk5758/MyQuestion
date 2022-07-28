@@ -238,4 +238,5 @@
 .login-modal .simple-login {display: flex; align-items: center; flex-direction: column; margin-top: 2rem; font-size: 18px; font-weight: 500; align-self: stretch;}
 .login-modal .simple-login > div {margin-bottom: 0.6rem;}
 .simple-login .icon-group {display: flex; justify-content: space-around; width: 60%;}
-.icon-group > a {border: 2px solid#000000; padding: 1rem; border-radius: 50%;}
+.icon-group > a {width: 22px; height: 22px; border: 2px solid#000000; padding: 1rem; border-radius: 50%; text-align: center;}
+
