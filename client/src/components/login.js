@@ -23,7 +23,7 @@ function LoginComponent(props)
                     ls.setItem("isLogin" , true);
                     ls.setItem("sessionId", res.data.user.userId);
                     props.setUser(user);
-                    
+                    window.location.href = "/";
                 }
                 else
                 {
