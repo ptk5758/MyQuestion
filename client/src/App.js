@@ -58,11 +58,10 @@ class App extends Component
             <Route path='' element={<Main/>} />
             {/* <Route path='login' element={ <LoginComponent setHeader={this.setHeader.bind(this)}/> } /> */}
             <Route path='Question' element={<Question/>} />
-            <Route path='Question/view' element={<QuestionView/>}/>
+            <Route path='Question/view' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
-            <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>

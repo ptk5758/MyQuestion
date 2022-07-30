@@ -1,6 +1,7 @@
 import React from "react";
 import { Component } from "react";
 import axios from 'axios';
+import queryString from 'query-string';
 class QuestionInsert extends Component
 {
     constructor(props)
@@ -11,9 +12,20 @@ class QuestionInsert extends Component
             subject: "",
             questions: [
                 {question : "", isAnswer: false}
-            ]
+            ],
         }
     }
+
+    componentDidMount()
+    {
+        let params = queryString.parse(window.location.search);
+        if(params.uid != undefined){
+            this.setState({uid: params.uid});
+        }
+        
+        setTimeout(() => {console.log(this.state)}, 100);
+    }
+
     questionValueChange(event, index)
     {        
         let objs = this.state.questions.slice();

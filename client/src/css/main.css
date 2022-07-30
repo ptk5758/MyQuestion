@@ -244,7 +244,9 @@
 
 .login-modal .login-option {display: flex;}
 .login-option > div {margin: 0.5rem;}
+
 /*문제 상세정보*/
 .deleteModifyBtn{ padding: 33%;}
 .deleteBtn { background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
 .modifyBtn { background-color: #7ecef4; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
+
