@@ -60,6 +60,11 @@ app.delete("/answer/:uid", (req, res)=>{
     });    
 });
 
+	
+//http://localhost:3000/auth/kakao/callback
+const auth = require('./auth/index')
+app.use("/auth", auth);
+
 
 app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
 

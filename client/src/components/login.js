@@ -69,7 +69,7 @@ function LoginComponent(props)
                     <span>간편로그인</span>
                 </div>
                 <div className="icon-group">
-                    <a>네</a>
+                    <a target={"_blank"} href={`https://kauth.kakao.com/oauth/authorize?client_id=018cce772cd5f89abf2008c46f96c5e9&redirect_uri=http://localhost:5000/auth/kakao/callback&response_type=code`}>네</a>
                     <a>구</a>
                     <a>카</a>                    
                 </div>
