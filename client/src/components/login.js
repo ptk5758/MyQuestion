@@ -6,9 +6,36 @@ function LoginComponent(props)
     const [userId, setUserId] = useState("");
     const [userPass, setUserPass] = useState("");
 
+    const ls = window.localStorage;
+
     const loginSubmit = () => {
         sendUserInfo()
-        .then(res=>{console.log(res);});
+        .then(res=>{
+            console.log(res);
+            if(res.status === 200)
+            {
+                if(res.data.code)
+                {
+                    const user = {
+                        isLogin : true,
+                        userId : res.data.user.userId
+                    };                    
+                    ls.setItem("isLogin" , true);
+                    ls.setItem("sessionId", res.data.user.userId);
+                    props.setUser(user);
+                    
+                }
+                else
+                {
+                    alert("로그인에 실패하셧습니다.");
+                }
+            }
+            else
+            {
+                console.log(res);
+            }
+            
+        });
     }
 
     const sendUserInfo = () => {        
