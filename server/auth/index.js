@@ -19,10 +19,20 @@ router.get("/kakao/callback", async (req,res) => {
                 code : code
             }
         )
+    });    
+
+    //console.log(token);
+
+    let user = await axios({
+        method : 'POST',
+        url : 'https://kapi.kakao.com/v2/user/me',
+        headers : {
+            "Authorization" : `Bearer ${token.data.access_token}`
+        }
     });
-    console.log(token);
-    
-    res.send("aaaa");
+
+    req.session.user = user.data;
+    res.send("Good");
 });
 
 router.get("/token/callback", (req,res) => {

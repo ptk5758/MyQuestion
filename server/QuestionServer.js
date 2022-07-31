@@ -21,7 +21,7 @@ app.use(session({
 // CORS 어쩌구 일괄 처리
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-origin', '*');
-    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");    
     next();
 });
 
@@ -33,6 +33,7 @@ app.use((req,res,next)=>{
 
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  
+    console.log(req.session.user);    
     res.send("Hello World");
 });
 
