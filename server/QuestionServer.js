@@ -32,8 +32,7 @@ app.use((req,res,next)=>{
 });
 
 app.get("/", (req, res) => {
-    res.setHeader('Access-Control-Allow-origin', '*');  
-    console.log(req.session.user);    
+    console.log(req.session);
     res.send("Hello World");
 });
 

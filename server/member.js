@@ -2,14 +2,20 @@ const conn = require('./conn');
 
 const router = require('express').Router();
 
-const developer = {
-    userId : "dev",
-    userPass : "1234",
-    nickName : "developer"
-}
+router.post("/loginafter", (req,res)=>{        
+    console.log(req.session);
+    const result = {
+        code : 0
+    };
 
-router.get("/login", (req,res)=>{        
-    res.send("대충 로그인페이지 ");
+    if(req.session.user !== undefined)
+    {
+        result.user = req.session.user;
+        result.code = 1;
+    }
+
+    res.send(result);
+    
 });
 
 router.post("/login", (req,res) => {

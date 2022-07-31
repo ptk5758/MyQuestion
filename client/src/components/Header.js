@@ -17,7 +17,7 @@ class Header extends Component
     }
 
     componentDidMount()
-    {
+    {        
         const ls = window.localStorage;
         if(ls.getItem("sessionId") !== null)
         {

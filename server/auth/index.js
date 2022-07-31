@@ -32,6 +32,7 @@ router.get("/kakao/callback", async (req,res) => {
     });
 
     req.session.user = user.data;
+    //res.redirect("http://localhost:3000/loginafter");
     res.send("Good");
 });
 
