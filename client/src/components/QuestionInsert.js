@@ -2,6 +2,7 @@ import React from "react";
 import { Component } from "react";
 import axios from 'axios';
 import queryString from 'query-string';
+
 class QuestionInsert extends Component
 {
     constructor(props)
@@ -22,8 +23,28 @@ class QuestionInsert extends Component
         if(params.uid != undefined){
             this.setState({uid: params.uid});
         }
-        
-        setTimeout(() => {console.log(this.state)}, 100);
+
+        if(this.uid != undefined){
+            this.loadQuestion();            
+        }
+    }
+
+    //잘안됌 수정해보자
+    loadQuestion()
+    {
+        Promise.all([fetch('http://localhost:5000/question/'+this.uid)
+        .then(res1=>res1.json()),
+        fetch('http://localhost:5000/question/'+this.uid+'/answer')
+        .then(res2=>res2.json())])
+        .then(([res1, res2]) => {
+            this.setState({
+                type: res1.mode,
+                subject: res1.question,
+                questions: res2
+            });
+        });
+
+        setTimeout(() => {console.log(this.state)}, 500);
     }
 
     questionValueChange(event, index)
