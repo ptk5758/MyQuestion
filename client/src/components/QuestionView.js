@@ -82,7 +82,7 @@ class QuestionView extends Component
                 <div className='answer-title'>
                   • 답 &nbsp;
                   {this.state.answers.map((item) => {
-                    return <span className='this.answer'>{item.answer} &nbsp;</span>
+                    return <span className='this-answer'>{item.answer} &nbsp;</span>
                   })}
                 </div>
                 <div className='deleteModifyBtn'>

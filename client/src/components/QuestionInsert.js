@@ -22,10 +22,7 @@ class QuestionInsert extends Component
         let params = queryString.parse(window.location.search);
         if(params.uid != undefined){
             this.setState({uid: params.uid});
-        }
-
-        if(this.uid != undefined){
-            this.loadQuestion();            
+            this.loadQuestion();
         }
     }
 
@@ -33,9 +30,9 @@ class QuestionInsert extends Component
     loadQuestion()
     {
         Promise.all([fetch('http://localhost:5000/question/'+this.uid)
-        .then(res1=>res1.json()),
+        .then(res1=>console.log(res1.json())),
         fetch('http://localhost:5000/question/'+this.uid+'/answer')
-        .then(res2=>res2.json())])
+        .then(res2=>console.log(res2.json()))])
         .then(([res1, res2]) => {
             this.setState({
                 type: res1.mode,
@@ -44,7 +41,7 @@ class QuestionInsert extends Component
             });
         });
 
-        setTimeout(() => {console.log(this.state)}, 500);
+        //setTimeout(() => {console.log(this.state)}, 500);
     }
 
     questionValueChange(event, index)
