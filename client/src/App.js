@@ -13,6 +13,7 @@ import { Modal } from './components/Modal';
 import { QuestionView } from './components/QuestionView';
 import { Developer } from './components/Developer';
 import { LoginComponent } from './components/login';
+import KakaoCallback from './components/Kakaoresult';
 class App extends Component
 {
   constructor(props)
@@ -63,6 +64,7 @@ class App extends Component
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
             <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
+            <Route path='/kakao/callback' element={<KakaoCallback/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>

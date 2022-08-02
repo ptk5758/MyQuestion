@@ -6,8 +6,7 @@ function LoginComponent(props)
     const kakao = require('../kakao');
     const [userId, setUserId] = useState("");
     const [userPass, setUserPass] = useState("");
-    console.log(kakao);
-
+    
     const loginSubmit = () => {
         sendUserInfo()
         .then(res=>{console.log(res);});
