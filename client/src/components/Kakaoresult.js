@@ -35,6 +35,7 @@ function KakaoCallback()
         .then(res => {
             if(res.status === 200)
             {
+                console.log(res.data);
                 const access_token = res.data.access_token;
                 const refresh_token = res.data.refresh_token;
                 axios({
@@ -58,7 +59,7 @@ function KakaoCallback()
             }
         })
         .catch(err => console.log(err));
-    }, []); // 이유는 모르겠지만  [ ] 안에 넣어줘야함
+    }, [code]); // 이유는 모르겠지만  [ ] 안에 넣어줘야함
     
     return (<div>카카오 콜백</div>);
 }
