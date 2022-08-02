@@ -1,10 +1,10 @@
 let express = require("express");
 let app = express();
-
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-//const FileStore = require('session-file-store')(session); 로컬에 파일이 저장됨
-const MemoryStore = require('memorystore')(session);
+const FileStore = require('session-file-store')(session); //로컬에 파일이 저장됨
+//const MemoryStore = require('memorystore')(session);
 // app.use(function(req,res,next){ //미들웨어 원리
 //     app.test = "asd";    
 //     next();
@@ -15,21 +15,20 @@ app.use(session({
     secret: "ptk test",
     resave: false,
     saveUninitialized: true,
-    store: new MemoryStore()
+    store: new FileStore()
 }));
 
 // CORS 어쩌구 일괄 처리
 app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-origin', '*');
+    //res.setHeader('Access-Control-Allow-origin', '*');
     res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
     next();
 });
 
-app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-origin', '*');
-    res.setHeader("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-    next();
-});
+app.use(cors({
+    origin : true,
+    credentials : true
+}))
 
 app.get("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');  

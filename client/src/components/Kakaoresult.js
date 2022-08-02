@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import queryStirng from "query-string";
 import axios from "axios";
+//axios.defaults.withCredentials = true; // session 유지를 위한 어쩌구
 function KakaoCallback()
 {
     // Query String 읽어오기
@@ -17,7 +18,7 @@ function KakaoCallback()
             method : "POST",
             url : "https://kauth.kakao.com/oauth/token",
             headers : {
-                "Content-Type" : "application/x-www-form-urlencoded;charset=utf-8"
+                "Content-Type" : "application/x-www-form-urlencoded;charset=utf-8",                
             },
             data : qs.stringify({
                 grant_type : "authorization_code",
@@ -41,12 +42,14 @@ function KakaoCallback()
                     url : "http://localhost:5000/kakao/token",
                     data : qs.stringify({
                         access_token : access_token
-                    })
+                    }),
+                    withCredentials : true
                 })
                 .then(res2 => {
                     axios({
                         method : "GET",
-                        url : "http://localhost:5000/kakao/user"
+                        url : "http://localhost:5000/kakao/user",
+                        withCredentials : true
                     })
                     .then(res3 => {
                         console.log(res3);
