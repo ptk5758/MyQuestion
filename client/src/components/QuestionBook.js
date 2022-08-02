@@ -51,10 +51,9 @@ class QuestionBookLatest extends Component
   {
     return(
         <div className="question-list">
-            <QuestionBookItem/>
-            <QuestionBookItem/>
-            <QuestionBookItem/>
-            <QuestionBookItem/>
+            {this.props.subjects.map((str, index) => {
+                return <QuestionBookItem subject={str.subject} key={index}/>
+            })}
         </div>
     );
   }
@@ -66,7 +65,7 @@ class QuestionBookItem extends Component
   {
     return(
         <div className="item">
-            <span className="question-subject">사과의 스펠링은?</span>
+            <span className="question-subject">{this.props.subject}</span>
         </div>
     );
   }

@@ -22,14 +22,15 @@ class QuestionInsert extends Component
         let params = queryString.parse(window.location.search);
         if(params.uid != undefined){
             this.setState({uid: params.uid});
-            this.loadQuestion();
+            setTimeout(() => {console.log(this.state.uid)});
+            //일단 보류 setTimeout(() => {this.loadQuestion()}, 500);
         }
     }
 
-    //잘안됌 수정해보자
+    //잘안됌 수정해보자(일단 보류)
     loadQuestion()
     {
-        Promise.all([fetch('http://localhost:5000/question/'+this.uid)
+        /*Promise.all([fetch('http://localhost:5000/question/'+this.uid)
         .then(res1=>console.log(res1.json())),
         fetch('http://localhost:5000/question/'+this.uid+'/answer')
         .then(res2=>console.log(res2.json()))])
@@ -39,9 +40,20 @@ class QuestionInsert extends Component
                 subject: res1.question,
                 questions: res2
             });
-        });
+        });*/
 
         //setTimeout(() => {console.log(this.state)}, 500);
+        
+        axios.get(`http://locahost:5000/question/${this.state.uid}`)
+        .then(res=>{
+            console.log(res);
+            this.setState({type: res.mode, subject: res.question});
+            axios.get(`http://localhost:5000/question/${this.state.uid}/answer`)
+            .then(res2=>{
+                this.setState({questions: res2.answer});
+                console.log(this.state);
+            });
+        });
     }
 
     questionValueChange(event, index)
