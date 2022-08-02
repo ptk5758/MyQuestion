@@ -35,7 +35,23 @@ function KakaoCallback()
             if(res.status === 200)
             {
                 const access_token = res.data.access_token;
-                const refresh_token = res.data.refresh_token;                
+                const refresh_token = res.data.refresh_token;
+                axios({
+                    method : "POST",
+                    url : "http://localhost:5000/kakao/token",
+                    data : qs.stringify({
+                        access_token : access_token
+                    })
+                })
+                .then(res2 => {
+                    axios({
+                        method : "GET",
+                        url : "http://localhost:5000/kakao/user"
+                    })
+                    .then(res3 => {
+                        console.log(res3);
+                    });
+                });
             }
         })
         .catch(err => console.log(err));

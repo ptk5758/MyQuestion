@@ -60,6 +60,9 @@ app.delete("/answer/:uid", (req, res)=>{
     });    
 });
 
+//카카오 API 관련
+const kakaoAPI = require("./kakaoAPI/index");
+app.use("/kakao", kakaoAPI);
 
 app.listen(5000, () =>{console.log('5000번 포트로 서버가 열림');});
 
