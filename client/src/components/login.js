@@ -50,10 +50,38 @@ function LoginComponent(props)
             </div>
             <div className="login-option">
                 <div><a>아이디 찾기</a></div>
-                <div><a>회원가입</a></div>
+                <div><a href={"/regist"}>회원가입</a></div>
             </div>
         </div>
     );
 }
 
-export { LoginComponent }; 
+function RegistComponent(props)
+{
+    useEffect(()=>{
+        props.setHeader(true);
+    }, []);
+    return (
+        <div className="regist">
+            <div className="regist-form">
+                <div className="regist-item">                
+                    <label>• 아이디</label>
+                    <input placeholder="아이디"/>
+                </div>
+                <div className="regist-item">                
+                    <label>• 비밀번호</label>
+                    <input placeholder="비밀번호"/>
+                </div>
+                <div className="regist-item">                
+                    <label>• 닉네임</label>
+                    <input placeholder="닉네임"/>
+                </div>
+            </div>
+            <div className="regist-btn">                
+                <button>회원가입</button>
+            </div>
+        </div>
+        );
+}
+
+export { LoginComponent, RegistComponent }; 
