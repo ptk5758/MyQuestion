@@ -25,6 +25,7 @@ class QuestionBook extends Component
             });
         });
     }
+
   render()
   {
     return(
@@ -32,12 +33,12 @@ class QuestionBook extends Component
             {this.state.books.map((bookname, index) => {
                 return (
                     <div className='item-box'>
-                        <span className='book' key={index}>{bookname.subject}</span>
+                        <span className='book' key={index} onClick={() => {window.location.href='/SolveQuestion'}}>{bookname.subject}</span>
                     </div>
                 );
             })}
             <div className='item-box'>
-                <span className='plus-book'>
+                <span className='plus-book' onClick={() => {window.location.href='/questionbookinsert'}}>
                     <img src={plus}/>                        
                 </span>
             </div>

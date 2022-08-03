@@ -30,14 +30,14 @@ class QuestionInsert extends Component
     //잘안됌 수정해보자(일단 보류)
     loadQuestion()
     {
-        /*Promise.all([fetch('http://localhost:5000/question/'+this.uid)
+        /*Promise.all([fetch('http://localhost:5000/question/'+this.state.uid)
         .then(res1=>console.log(res1.json())),
-        fetch('http://localhost:5000/question/'+this.uid+'/answer')
+        fetch('http://localhost:5000/question/'+this.state.uid+'/answer')
         .then(res2=>console.log(res2.json()))])
         .then(([res1, res2]) => {
             this.setState({
-                type: res1.mode,
-                subject: res1.question,
+                type: res1,
+                subject: res1,
                 questions: res2
             });
         });*/

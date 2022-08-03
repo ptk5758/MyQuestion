@@ -13,6 +13,7 @@ import { Modal } from './components/Modal';
 import { QuestionView } from './components/QuestionView';
 import { Developer } from './components/Developer';
 import { LoginComponent } from './components/login';
+import SolveQuestion from './components/SolveQuestion';
 class App extends Component
 {
   constructor(props)
@@ -58,10 +59,11 @@ class App extends Component
             <Route path='' element={<Main/>} />
             {/* <Route path='login' element={ <LoginComponent setHeader={this.setHeader.bind(this)}/> } /> */}
             <Route path='Question' element={<Question/>} />
-            <Route path='Question/view' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
+            <Route path='Question/view' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
+            <Route path='SolveQuestion' element={<SolveQuestion/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>

@@ -39,7 +39,6 @@ class Main extends Component
 
     render()
     {
-        let data = ["1번문제 어쩌구","2번문제 어쩌구","3번문제 어쩌구"];
         return(
             <div className="main">
                 <article>
