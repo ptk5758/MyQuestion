@@ -61,24 +61,49 @@ function RegistComponent(props)
     useEffect(()=>{
         props.setHeader(true);
     }, []);
+
+    const [userId, setUserId] = useState("");
+    const [userPass, setUserPass] = useState("");
+    const [userName, setUserName] = useState("");
+
+    const registSubmit = () => {        
+        // 회원가입 전채적인 로직
+        sendUser()
+        .then(res=> {console.log(res);});
+    }
+
+    const sendUser = () => {
+        // 회원가입시 백엔드 서버로 통신할 함수
+
+        return axios({
+            method : "POST",
+            url : "http://localhost:5000/member/regist",
+            data : qs.stringify({
+                userId : userId,
+                userPass : userPass,
+                userName : userName
+            })
+        });
+    }
+
     return (
         <div className="regist">
             <div className="regist-form">
                 <div className="regist-item">                
                     <label>• 아이디</label>
-                    <input placeholder="아이디"/>
+                    <input placeholder="아이디" value={userId} onChange={(e)=>{setUserId(e.target.value)}}/>
                 </div>
                 <div className="regist-item">                
                     <label>• 비밀번호</label>
-                    <input placeholder="비밀번호"/>
+                    <input placeholder="비밀번호" value={userPass} onChange={(e)=>{setUserPass(e.target.value)}}/>
                 </div>
                 <div className="regist-item">                
                     <label>• 닉네임</label>
-                    <input placeholder="닉네임"/>
+                    <input placeholder="닉네임" value={userName} onChange={(e)=>{setUserName(e.target.value)}}/>
                 </div>
             </div>
             <div className="regist-btn">                
-                <button>회원가입</button>
+                <button onClick={registSubmit}>회원가입</button>
             </div>
         </div>
         );
