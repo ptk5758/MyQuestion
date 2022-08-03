@@ -3,9 +3,10 @@ import axios from 'axios';
 import qs from 'qs';
 function LoginComponent(props)
 {    
+    const kakao = require('../kakao');
     const [userId, setUserId] = useState("");
     const [userPass, setUserPass] = useState("");
-
+    
     const loginSubmit = () => {
         sendUserInfo()
         .then(res=>{console.log(res);});
@@ -42,7 +43,7 @@ function LoginComponent(props)
                     <span>간편로그인</span>
                 </div>
                 <div className="icon-group">
-                    <a>네</a>
+                    <a href={`https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_nickname,profile_image`}>네</a>
                     <a>구</a>
                     <a>카</a>                    
                 </div>
