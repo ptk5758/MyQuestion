@@ -3,9 +3,10 @@ import axios from 'axios';
 import qs from 'qs';
 function LoginComponent(props)
 {    
+    const kakao = require('../kakao');
     const [userId, setUserId] = useState("");
     const [userPass, setUserPass] = useState("");
-
+    
     const loginSubmit = () => {
         sendUserInfo()
         .then(res=>{console.log(res);});
@@ -42,17 +43,70 @@ function LoginComponent(props)
                     <span>간편로그인</span>
                 </div>
                 <div className="icon-group">
-                    <a>네</a>
+                    <a href={`https://kauth.kakao.com/oauth/authorize?client_id=${kakao.clientID}&redirect_uri=${kakao.redirectUri}&response_type=code&scope=profile_nickname,profile_image`}>네</a>
                     <a>구</a>
                     <a>카</a>                    
                 </div>
             </div>
             <div className="login-option">
                 <div><a>아이디 찾기</a></div>
-                <div><a>회원가입</a></div>
+                <div><a href={"/regist"}>회원가입</a></div>
             </div>
         </div>
     );
 }
 
-export { LoginComponent }; 
+function RegistComponent(props)
+{
+    useEffect(()=>{
+        
+    }, []);
+
+    const [userId, setUserId] = useState("");
+    const [userPass, setUserPass] = useState("");
+    const [userName, setUserName] = useState("");
+
+    const registSubmit = () => {        
+        // 회원가입 전채적인 로직
+        sendUser()
+        .then(res=> {console.log(res);});
+    }
+
+    const sendUser = () => {
+        // 회원가입시 백엔드 서버로 통신할 함수
+
+        return axios({
+            method : "POST",
+            url : "http://localhost:5000/member/regist",
+            data : qs.stringify({
+                userId : userId,
+                userPass : userPass,
+                userName : userName
+            })
+        });
+    }
+
+    return (
+        <div className="regist">
+            <div className="regist-form">
+                <div className="regist-item">                
+                    <label>• 아이디</label>
+                    <input placeholder="아이디" value={userId} onChange={(e)=>{setUserId(e.target.value)}}/>
+                </div>
+                <div className="regist-item">                
+                    <label>• 비밀번호</label>
+                    <input placeholder="비밀번호" value={userPass} onChange={(e)=>{setUserPass(e.target.value)}}/>
+                </div>
+                <div className="regist-item">                
+                    <label>• 닉네임</label>
+                    <input placeholder="닉네임" value={userName} onChange={(e)=>{setUserName(e.target.value)}}/>
+                </div>
+            </div>
+            <div className="regist-btn">                
+                <button onClick={registSubmit}>회원가입</button>
+            </div>
+        </div>
+        );
+}
+
+export { LoginComponent, RegistComponent }; 

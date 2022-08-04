@@ -12,8 +12,10 @@ import Main from './components/Main';
 import { Modal } from './components/Modal';
 import { QuestionView } from './components/QuestionView';
 import { Developer } from './components/Developer';
-import { LoginComponent } from './components/login';
 import SolveQuestion from './components/SolveQuestion';
+import { LoginComponent, RegistComponent } from './components/login';
+import KakaoCallback from './components/Kakaoresult';
+
 class App extends Component
 {
   constructor(props)
@@ -64,7 +66,9 @@ class App extends Component
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBook/:uid' element={<SolveQuestion/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
-            {/*<Route path='SolveQuestion' element={<SolveQuestion/>}/>*/}
+            <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
+            <Route path='/kakao/callback' element={<KakaoCallback/>}/>
+            <Route path='regist' element={<RegistComponent setHeader={this.setHeader.bind(this)}/>}/>
             <Route path='*' element={<div>404 not found</div>}/>
           </Routes>
           </div>

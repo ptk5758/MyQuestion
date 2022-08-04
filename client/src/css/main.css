@@ -1,5 +1,7 @@
 /* 기타 */
 .showBorder{ border: 1px solid#000000; }
+#root {height: 100%;}
+#root > div {height: 100%;}
 /*  */
 /* 헤더 */
 .header {display: flex; justify-content: space-between; padding: 0.8rem; border-bottom: 2px solid#000000; align-items: center;}
@@ -9,6 +11,8 @@
 .header > .title > span {font-weight: bold; font-size: 28px; }
 .header > .box-right {flex: 1;}
 /* 헤더 */
+
+.content {height: 80%;}
 
 /* 메인 */
 .main {height: 100%;}
@@ -250,6 +254,15 @@
 .deleteBtn { background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
 .modifyBtn { background-color: #7ecef4; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
 
+
 /*문제 푸는 페이지*/
 .solve-question-subject { font-size: 30px; font-weight: bolder;}
 .select-answer-btn {border: 2px solid#000000; border-radius: 20%; background-color: #cfcfcf; padding-left: 2%; padding-right: 2%;}
+
+/* 회원가입 */
+.regist {width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 2rem; align-items: center; justify-content: space-between;}
+.regist .regist-form {width: 100%; display: flex; flex-direction: column; align-items: center;}
+.regist .regist-item {display: flex; width: 80%; justify-content: space-between; margin: 1rem 0.6rem;}
+.regist .regist-item > label {font-size: 22px; font-weight: 500;}
+.regist .regist-item:last-child { justify-self: flex-end;}
+.regist .regist-btn > button {border-radius: 1.2rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 1rem; font-weight: bold;}
