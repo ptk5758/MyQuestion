@@ -25,11 +25,9 @@ class QuestionView extends Component
           uid: 0,
           answer: ""
         }
-      ]
+      ],
     }
   }
-
-
 
   componentDidMount()
   {
@@ -50,7 +48,6 @@ class QuestionView extends Component
   {
     if(window.confirm("삭제 하시겠습니까?") == true){
       let params = queryString.parse(window.location.search);
-      console.log(params);
       const qurl = "http://localhost:5000/question/" + params.uid;
       const aurl = qurl + '/answer';
   
@@ -60,6 +57,12 @@ class QuestionView extends Component
       });
       window.location.href="/question";
     }
+  }
+
+  editQuestion()
+  {
+    let params = queryString.parse(window.location.search);
+    window.location.href=`/QuestionInsert?uid=${params.uid}`;
   }
 
     render()
@@ -79,27 +82,16 @@ class QuestionView extends Component
                 <div className='answer-title'>
                   • 답 &nbsp;
                   {this.state.answers.map((item) => {
-                    return <span className='this.answer'>{item.answer} &nbsp;</span>
+                    return <span className='this-answer'>{item.answer} &nbsp;</span>
                   })}
                 </div>
                 <div className='deleteModifyBtn'>
                   <span className='deleteBtn' onClick={() => {this.deleteQuestion()}}>삭제</span>
-                  <span className='modifyBtn' onClick={() => {this.props.openModal(<ModifyModal/>, "수정")}}>수정</span>
+                  <span className='modifyBtn' onClick={() => {this.editQuestion()}}>수정</span>
                 </div>
             </div>
         );
     }
 }
 
-class ModifyModal extends Component
-{
-  render()
-  {
-    return(
-      <div>asdf</div>
-    )
-  }
-    
-  
-}
 export { QuestionView } ;

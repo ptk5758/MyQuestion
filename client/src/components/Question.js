@@ -25,7 +25,7 @@ class Question extends Component
     .then(json =>{      
       this.setState({
         questions : json
-      });      
+      });
     });
   }
 
@@ -52,12 +52,11 @@ class Question extends Component
 class QuestionLatest extends Component
 {  
   render()
-  {       
-    let data = this.props.questions;     
+  {         
     return(
       <div className="question-list">
-        {data.map((str, index) => {
-          return <QuestionItem subject={str} key={index}/>
+        {this.props.questions.map((str, index) => {
+          return <QuestionItem subject={str.question} key={index}/>
         })}
       </div>
     )

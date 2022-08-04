@@ -10,6 +10,20 @@ router.get("/", (req, res)=>{
         res.send(rows)
     });
 });
+
+router.get("/:uid", (req, res) => {
+    res.setHeader('Access-Control-Allow-origin', '*');  
+    const conn = require('./conn');
+
+    let uid = req.params.uid;
+    let q = `select * from book where uid=${uid}`;
+    conn.query(q, (error, rows, field) => {
+        if(error)
+            console.log(error);
+        res.send(rows[0]);
+    });
+});
+
 router.post("/", (req, res) => {
     res.setHeader('Access-Control-Allow-origin', '*');    
     const conn = require('./conn');

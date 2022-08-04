@@ -248,14 +248,18 @@
 
 .login-modal .login-option {display: flex;}
 .login-option > div {margin: 0.5rem;}
+
 /*문제 상세정보*/
 .deleteModifyBtn{ padding: 33%;}
 .deleteBtn { background-color: #ff2d2d; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
 .modifyBtn { background-color: #7ecef4; padding: 0.4rem 0.6rem; font-weight: bold; color: #eee; border-radius: 0.3rem; margin-left: 10%; }
 
 
-/* 회원가입 */
+/*문제 푸는 페이지*/
+.solve-question-subject { font-size: 30px; font-weight: bolder;}
+.select-answer-btn {border: 2px solid#000000; border-radius: 20%; background-color: #cfcfcf; padding-left: 2%; padding-right: 2%;}
 
+/* 회원가입 */
 .regist {width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 2rem; align-items: center; justify-content: space-between;}
 .regist .regist-form {width: 100%; display: flex; flex-direction: column; align-items: center;}
 .regist .regist-item {display: flex; width: 80%; justify-content: space-between; margin: 1rem 0.6rem;}
