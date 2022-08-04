@@ -31,9 +31,10 @@ class QuestionBook extends Component
     return(
         <div className='questionbook'>
             {this.state.books.map((bookname, index) => {
+                console.log(bookname);
                 return (
                     <div className='item-box'>
-                        <span className='book' key={index} onClick={() => {window.location.href='/SolveQuestion'}}>{bookname.subject}</span>
+                        <span className='book' key={index} onClick={() => {window.location.href=`questionbook/${bookname.uid}`}}>{bookname.subject}</span>
                     </div>
                 );
             })}
