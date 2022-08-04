@@ -53,4 +53,17 @@ router.post("/regist", (req,res) => {
     
 });
 
+
+router.get("/isUser", (req,res) => {
+    //const { userId } = req.body;
+    const userId = req.query.userid;
+    const query = `SELECT count(id) as cnt FROM member WHERE id = '${userId}'`;
+    conn.query(query, (err,rows) => {
+        if(err)
+        {
+            console.log(err);
+        }
+        res.send(rows[0]);
+    });
+});
 module.exports = router;
