@@ -59,7 +59,7 @@ function LoginComponent(props)
 function RegistComponent(props)
 {
     useEffect(()=>{
-        
+
     }, []);
 
     const [userId, setUserId] = useState("");
