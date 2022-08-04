@@ -29,6 +29,19 @@ function KakaoCallback()
 
         });
     }
+
+    const doRegist = (id, pass, nick) => {
+        axios({
+            method : "POST",
+            url : "http://localhost:5000/member/regist",
+            data : qs.stringify({
+                userId : id,
+                userPass : pass,
+                userName : nick
+            })
+        })
+        .then(res => console.log(res));
+    }
     
     useEffect(()=>{
         getToken()
@@ -52,8 +65,25 @@ function KakaoCallback()
                         url : "http://localhost:5000/kakao/user",
                         withCredentials : true
                     })
-                    .then(res3 => {
-                        console.log(res3);
+                    .then(res3 => {       
+                        const userId = res3.data.id;
+                        const nickname = res3.data.kakao_account.profile.nickname;
+                        console.log(nickname);
+                        axios({
+                            method : "GET",
+                            url : `http://localhost:5000/member/isUser?userid=${userId}`
+                        })
+                        .then(res4 => {
+                            let cnt = res4.cnt;
+                            if(cnt)
+                            {
+                                console.log("로그인처리");
+                            }
+                            else
+                            {
+                                doRegist(`kakao_${userId}`, "1111", nickname);
+                            }
+                        });
                     });
                 });
             }
