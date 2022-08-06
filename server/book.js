@@ -36,7 +36,7 @@ router.get("/:uid", (req, res) => {
                     query += `OR uid = ${arr[i]} `;
                 }
             }
-            conn.query(query, (err2,rows2)=>{
+            conn.query(query, (err2,rows2)=>{            
                 if(err2)
                 {
                     console.log(err2);

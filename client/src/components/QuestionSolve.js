@@ -18,26 +18,34 @@ function QuestionSolve()
         <div className="question-solve">
             <div className="question-solve-item">
                 <div>
-                    <span>• 책이름 : </span>
+                    <span className="descript">• 책이름 : </span>
                     <span>{book.subject ? book.subject : ""}</span>
                 </div>
             </div>
             <div className="question-solve-item">
                 <div>
-                    <span>• 생성일짜 : </span>
+                    <span className="descript">• 생성일자 : </span>
                     <span>{book.datetime ? book.datetime : ""}</span>
                 </div>
             </div>
             <div className="question-solve-item">
                 <div>
-                    <span>• 포함된 문제</span>
+                    <span className="descript">• 포함된 문제</span>
                     <span>
                         <ul>                            
                             {book.questions ? book.questions.map((obj, index) => {                                
-                                return <li key={index}>{obj.question}</li>
+                                return <li key={index}>{index + 1}. {obj.question}</li>
                             }) : ""}
                         </ul>
                     </span>
+                </div>
+            </div>
+
+            <div className="question-solve-item">
+                <div>
+                    <button>수정</button>
+                    <button>삭제</button>
+                    <button>풀기</button>
                 </div>
             </div>
 

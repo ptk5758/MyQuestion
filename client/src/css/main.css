@@ -266,3 +266,9 @@
 .regist .regist-item > label {font-size: 22px; font-weight: 500;}
 .regist .regist-item:last-child { justify-self: flex-end;}
 .regist .regist-btn > button {border-radius: 1.2rem; border: none; background-color: #383838; color: #f1f1f1; font-size: 26px; padding: 1rem; font-weight: bold;}
+
+/* 책 풀기 */
+.question-solve {display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center;}
+.question-solve .question-solve-item { width: 87%; margin: 1rem 0rem;}
+.question-solve .question-solve-item:last-child {}
+.question-solve .descript { font-size: 24px; font-weight: 500; }
