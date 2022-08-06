@@ -12,14 +12,13 @@ function SolveQuestion(props)
             url: `http://localhost:5000/book/${uid}`,
             method: 'GET'
         })
-        .then(res =>setQuestion(res))
-        .then(setTimeout(() => {console.log(question)}, 500));
+        .then(res => setQuestion(res));
     }, []);
 
     return(
         <div className='solve-question'>
             <div className='solve-question-title'>
-                <span className='solve-question-subject'>hi</span>
+                <span className='solve-question-subject'>asdf</span>
             </div>
             <div className='solve-question-answer'>
                 <div className='answer-list'>

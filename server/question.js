@@ -37,7 +37,7 @@ router.get("/:uid/answer", (req, res) =>{
 
 router.delete("/:uid/answer", (req, res) => {
     const conn = require('./conn');
-    let q = "delete from answers where uid=" + req.params.uid;
+    let q = "delete from answers where parent=" + req.params.uid;
     conn.query(q, (err, row) =>{
         if(err)
             console.log(err);
