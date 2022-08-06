@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import qs from 'qs';
+
+const ls = window.localStorage;
 function LoginComponent(props)
 {    
     const kakao = require('../kakao');
@@ -9,7 +11,19 @@ function LoginComponent(props)
     
     const loginSubmit = () => {
         sendUserInfo()
-        .then(res=>{console.log(res);});
+        .then(res=>{
+            if(res.data.code)
+            {
+                ls.setItem("isLogin", true);
+                ls.setItem("userId", userId);
+                alert("환영합니다!");
+                window.location.href = "/";
+            }
+            else
+            {
+                alert("로그인에 실패하엿습니다.");
+            }
+        });
     }
 
     const sendUserInfo = () => {        
@@ -59,7 +73,7 @@ function LoginComponent(props)
 function RegistComponent(props)
 {
     useEffect(()=>{
-        
+
     }, []);
 
     const [userId, setUserId] = useState("");

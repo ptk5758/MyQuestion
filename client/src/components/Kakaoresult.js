@@ -71,16 +71,17 @@ function KakaoCallback()
                         console.log(nickname);
                         axios({
                             method : "GET",
-                            url : `http://localhost:5000/member/isUser?userid=${userId}`
+                            url : `http://localhost:5000/member/isUser?userid=kakao_${userId}`
                         })
                         .then(res4 => {
-                            let cnt = res4.cnt;
-                            if(cnt)
+                            let cnt = res4.data.cnt;                            
+                            if(cnt > 0)
                             {
                                 console.log("로그인처리");
                             }
                             else
                             {
+                                // 회원가입이 두번됨 처리해야함
                                 doRegist(`kakao_${userId}`, "1111", nickname);
                             }
                         });
