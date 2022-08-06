@@ -22,12 +22,18 @@ function LoginComponent(props)
     }
 
     const setStorage = () => {
-        console.log(userId);
-        if(userId != "")
-        {
-            localStorage.setItem("id", `어서오세요 ${userId}님`);
-            console.log(localStorage.getItem("id"));
-        }
+        const url = "http://localhost:5000/member/login"
+        axios.get(url)
+        .then(res => {
+            if(userId != "" && userPass != ""){
+                for(let i=0; i<res.data.length; i++){
+                    if(userId == res.data[i].id && userPass == res.data[i].pass){
+                        localStorage.setItem("id", `어서오세요 ${userId}님`);
+                        console.log(localStorage.getItem("id"));
+                    }    
+                }
+            }
+        });
     }
 
     const getStorage = () => {
