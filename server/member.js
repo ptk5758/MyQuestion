@@ -9,7 +9,14 @@ const developer = {
 }
 
 router.get("/login", (req,res)=>{        
-    res.send("대충 로그인페이지 ");
+    let sql = `select * from member`;
+    conn.query(sql, (err, rows) => {
+        if(err)
+        {
+            console.log(err);
+        }
+        res.send(rows);
+    })
 });
 
 router.post("/login", (req,res) => {

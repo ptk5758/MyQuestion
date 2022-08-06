@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import qs from 'qs';
-
-const ls = window.localStorage;
 function LoginComponent(props)
 {    
     const kakao = require('../kakao');
@@ -11,19 +9,7 @@ function LoginComponent(props)
     
     const loginSubmit = () => {
         sendUserInfo()
-        .then(res=>{
-            if(res.data.code)
-            {
-                ls.setItem("isLogin", true);
-                ls.setItem("userId", userId);
-                alert("환영합니다!");
-                window.location.href = "/";
-            }
-            else
-            {
-                alert("로그인에 실패하엿습니다.");
-            }
-        });
+        .then(res=>{console.log(res);});
     }
 
     const sendUserInfo = () => {        
@@ -33,6 +19,28 @@ function LoginComponent(props)
             userPass: userPass
         }
         return axios.post(url, qs.stringify(data));
+    }
+
+    const setStorage = () => {
+        const url = "http://localhost:5000/member/login"
+        axios.get(url)
+        .then(res => {
+            if(userId != "" && userPass != ""){
+                for(let i=0; i<res.data.length; i++){
+                    if(userId == res.data[i].id && userPass == res.data[i].pass){
+                        localStorage.setItem("id", `어서오세요 ${userId}님`);
+                        console.log(localStorage.getItem("id"));
+                    }    
+                }
+            }
+        });
+    }
+
+    const getStorage = () => {
+        if(userId != "")
+        {
+            localStorage.getItem("id");
+        }
     }
 
 
@@ -49,7 +57,7 @@ function LoginComponent(props)
                     <label><input value={userPass} onChange={(e)=>{setUserPass(e.target.value)}} /></label>
                 </div>
                 <div className="login-item">
-                    <button onClick={loginSubmit}>로그인</button>
+                    <button onClick={() => {loginSubmit(); setStorage();}}>로그인</button>
                 </div>
             </div>
             <div className="simple-login">
@@ -73,7 +81,7 @@ function LoginComponent(props)
 function RegistComponent(props)
 {
     useEffect(()=>{
-
+        
     }, []);
 
     const [userId, setUserId] = useState("");
