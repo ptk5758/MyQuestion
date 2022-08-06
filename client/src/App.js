@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import './css/init.css';
 import './css/main.css';
 import { Component } from 'react';
 import {QuestionBookInsert, QuestionBtn} from './components/QuestionBookInsert';
