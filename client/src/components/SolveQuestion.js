@@ -12,7 +12,7 @@ function SolveQuestion(props)
             url: `http://localhost:5000/book/${uid}`,
             method: 'GET'
         })
-        .then(res => setQuestion(res));
+        .then(res => {setQuestion(res.data); setTimeout(console.log(question), 500);});
     }, []);
 
     return(
