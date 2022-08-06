@@ -20,7 +20,36 @@ router.get("/:uid", (req, res) => {
     conn.query(q, (error, rows, field) => {
         if(error)
             console.log(error);
-        res.send(rows[0]);
+        if(rows[0] !== undefined)
+        {
+            let questions = rows[0].questions;
+            let arr = questions.split(",");
+            let query = `SELECT * FROM question WHERE 1=1 `;
+            for(let i=0; i<arr.length; i++)
+            {                
+                if(i == 0)
+                {
+                    query += `AND uid = ${arr[i]} `;
+                }
+                else 
+                {
+                    query += `OR uid = ${arr[i]} `;
+                }
+            }
+            conn.query(query, (err2,rows2)=>{
+                if(err2)
+                {
+                    console.log(err2);
+                }                
+                rows[0].questions = rows2;
+                res.send(rows[0]);
+            });
+        }
+        else
+        {
+            res.send({code: 0, msg : "err"});
+        }
+        
     });
 });
 
