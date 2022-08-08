@@ -72,23 +72,39 @@ function getQuestion(uid)
 
 function WriteAnswerPage()
 {
-    const { uid, quid } = useParams();    
+    const { uid, quid } = useParams();
 
-
-    const [question, setQuestion] = useState({});    
+    const [ question, setQuestion ] = useState({});
 
     useEffect(()=>{
         getQuestion(quid)
         .then(res=> {            
-            console.log(res);
-            setQuestion(res.data);            
-        })        
+            setQuestion(res.data);
+        })
     }, []);
 
     return(
-        <div>
-            문제를 푸는 페이지
-            <button onClick={()=>{setTimeout(console.log(question), 100)}}>test</button>
+        <div className="write-answer">        
+        <button onClick={console.log(question)}>test</button>
+            <div className="question-subject">
+                <span>• { question.question ? question.question : "" }</span>
+            </div>
+            <div className="answer-group">
+                {question.answers ? question.answers.map((obj, index) => {
+                    return <Answer key={index} index={index} answer={obj}/>;
+                }) : ""}
+            </div>
+        </div>
+    );
+}
+
+function Answer(props)
+{
+    console.log(props);
+    return(
+        <div className="answer">
+            <span><strong>{ props.index + 1 }</strong>. {props.answer.answer}</span>
+            <span className="choice-btn">선택</span>
         </div>
     );
 }
