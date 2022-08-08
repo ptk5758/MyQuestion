@@ -16,7 +16,7 @@ import { Developer } from './components/Developer';
 import SolveQuestion from './components/SolveQuestion';
 import { LoginComponent, RegistComponent } from './components/login';
 import KakaoCallback from './components/Kakaoresult';
-import { QuestionSolve } from './components/QuestionSolve';
+import { QuestionSolve, WriteAnswerPage } from './components/QuestionSolve';
 
 class App extends Component
 {
@@ -67,6 +67,7 @@ class App extends Component
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
             <Route path='QuestionBook/:uid' element={<QuestionSolve/>}/>
+            <Route path='QuestionBook/:uid/:quid' element={<WriteAnswerPage/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
             <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
             <Route path='/kakao/callback' element={<KakaoCallback/>}/>

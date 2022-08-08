@@ -61,4 +61,35 @@ function getBook(uid)
     });
 }
 
-export { QuestionSolve };
+function getQuestion(uid)
+{    
+    return axios({
+        method : "GET",
+        url : `http://localhost:5000/question/${uid}`
+    });
+
+}
+
+function WriteAnswerPage()
+{
+    const { uid, quid } = useParams();    
+
+
+    const [question, setQuestion] = useState({});    
+
+    useEffect(()=>{
+        getQuestion(quid)
+        .then(res=> {            
+            setQuestion(res.data[0]);            
+        })        
+    }, []);
+
+    return(
+        <div>
+            문제를 푸는 페이지
+            <button onClick={()=>{setTimeout(console.log(question), 100)}}>test</button>
+        </div>
+    );
+}
+
+export { QuestionSolve, WriteAnswerPage };
