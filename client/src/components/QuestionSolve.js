@@ -80,7 +80,8 @@ function WriteAnswerPage()
     useEffect(()=>{
         getQuestion(quid)
         .then(res=> {            
-            setQuestion(res.data[0]);            
+            console.log(res);
+            setQuestion(res.data);            
         })        
     }, []);
 

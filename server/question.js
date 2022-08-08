@@ -15,11 +15,23 @@ router.get("/:uid", (req, res) =>{
     res.setHeader('Access-Control-Allow-origin', '*');  
     const conn = require('./conn');
     let uid = req.params.uid;
-    let q = "select * from question where uid like " + uid;
+    let q = "select * from question where uid like " + uid;    
     conn.query(q, (error, rows, fields) => {
         if(error)
-            console.log(error);
-        res.send(rows);
+            console.log(error);        
+        if(rows[0] !== undefined)
+        {
+            let query = `SELECT * FROM answers WHERE parent = ${uid}`;
+            conn.query(query, (_err, _rows) => {
+                if (_err) console.log(_err);                                
+                rows[0].answers = _rows;
+                res.send(rows[0]);
+            });
+        }
+        else
+        {
+            res.send({code : 0, msg : "Error"});
+        }        
     });
 });
 
