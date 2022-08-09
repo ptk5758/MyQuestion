@@ -76,35 +76,61 @@ function WriteAnswerPage()
 
     const [ question, setQuestion ] = useState({});
 
-    useEffect(()=>{
+    const [ userAnswer, setUserAnswers ] = useState([]);
+
+    useEffect(()=>{        
         getQuestion(quid)
         .then(res=> {            
-            setQuestion(res.data);
+            setQuestion(res.data);            
+            let temp = [];
+            for(let i=0; i<res.data.answers.length; i++)
+            {
+                temp[i] = 0;
+            }        
+            setUserAnswers(temp);
         })
     }, []);
 
+    const setAnswer = (index, value) => {
+        let temp = [...userAnswer];
+        temp[index] = value;
+        setUserAnswers(temp);
+    }
+    
+
     return(
         <div className="write-answer">        
-        <button onClick={console.log(question)}>test</button>
+        <button onClick={() => console.log(userAnswer)}>test1</button>
+        <button onClick={() => setAnswer(2, 1)}>test2</button>
             <div className="question-subject">
                 <span>• { question.question ? question.question : "" }</span>
             </div>
             <div className="answer-group">
                 {question.answers ? question.answers.map((obj, index) => {
-                    return <Answer key={index} index={index} answer={obj}/>;
+                    return <Answer key={index} index={index} answer={obj} setAnswer={setAnswer}/>;
                 }) : ""}
+            </div>
+            <div className="answer-submit">
+                <button>채첨</button>
+                <button>오답노트 불러오기</button>
             </div>
         </div>
     );
 }
 
 function Answer(props)
-{
-    console.log(props);
+{   
+    const [state, setState] = useState(0);
+
+    const setAnswer = (index) => {
+        props.setAnswer(index, state ? 0 : 1);
+        setState(state ? 0 : 1);
+    }
+
     return(
         <div className="answer">
             <span><strong>{ props.index + 1 }</strong>. {props.answer.answer}</span>
-            <span className="choice-btn">선택</span>
+            <span className={state ? "choice-btn on" : "choice-btn"} onClick={() => setAnswer(props.index)}>선택</span>
         </div>
     );
 }
