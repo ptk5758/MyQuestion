@@ -96,12 +96,34 @@ function WriteAnswerPage()
         temp[index] = value;
         setUserAnswers(temp);
     }
+
+    const doGrading = () => {        
+        let answer = [];        
+        for(let i=0; i<question.answers.length; i++)
+        {   
+            answer[i] = question.answers[i].isAnswer;
+        }
+        console.log(answer);
+        console.log(userAnswer);
+        let cursor = 0;
+        while(cursor < question.answers.length)
+        {
+            if(answer[cursor] !== userAnswer[cursor])
+            {
+                console.log("오답");
+                return false;
+            }
+            cursor++;
+        }
+
+        console.log("정답");
+        return true;        
+    }
     
 
     return(
         <div className="write-answer">        
-        <button onClick={() => console.log(userAnswer)}>test1</button>
-        <button onClick={() => setAnswer(2, 1)}>test2</button>
+        <button onClick={() => console.log(userAnswer)}>test1</button>        
             <div className="question-subject">
                 <span>• { question.question ? question.question : "" }</span>
             </div>
@@ -111,7 +133,7 @@ function WriteAnswerPage()
                 }) : ""}
             </div>
             <div className="answer-submit">
-                <button>채첨</button>
+                <button onClick={() => {doGrading();}}>채첨</button>
                 <button>오답노트 불러오기</button>
             </div>
         </div>
