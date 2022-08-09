@@ -1,25 +1,42 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import qs from 'qs';
+
+const ls = window.localStorage;
+
 function LoginComponent(props)
 {    
     const kakao = require('../kakao');
     const [userId, setUserId] = useState("");
     const [userPass, setUserPass] = useState("");
     
-    const loginSubmit = () => {
+    /*const loginSubmit = () => {
         sendUserInfo()
-        .then(res=>{console.log(res);});
-    }
+        .then(res=>{
+            if(res.data.code)
+            {
+                ls.setItem("isLogin", true);
+                ls.setItem("userId", userId);
+                alert("환영합니다!");
+                window.location.href = "/";
+                return 1;
+            }
+            else
+            {
+                alert("로그인에 실패하엿습니다.");
+                return 0;
+            }
+        });
+    }*/
 
-    const sendUserInfo = () => {        
+    /*const sendUserInfo = () => {        
         const url = "http://localhost:5000/member/login";
         const data = {
             userId: userId,
             userPass: userPass
         }
         return axios.post(url, qs.stringify(data));
-    }
+    }*/
 
     const setStorage = () => {
         const url = "http://localhost:5000/member/login"
@@ -28,21 +45,20 @@ function LoginComponent(props)
             if(userId != "" && userPass != ""){
                 for(let i=0; i<res.data.length; i++){
                     if(userId == res.data[i].id && userPass == res.data[i].pass){
-                        localStorage.setItem("id", `어서오세요 ${userId}님`);
-                        console.log(localStorage.getItem("id"));
-                    }    
+                        localStorage.setItem("userId", userId);
+                        console.log(localStorage.getItem("userId"));
+                        alert("환영합니다!");
+                        window.location.href = "/";
+                        break;
+                    }else
+                    {
+                        alert("로그인에 실패하엿습니다.");
+                        break;
+                    }
                 }
             }
         });
     }
-
-    const getStorage = () => {
-        if(userId != "")
-        {
-            localStorage.getItem("id");
-        }
-    }
-
 
     useEffect(()=>{
         //props.setHeader(false);
@@ -57,7 +73,7 @@ function LoginComponent(props)
                     <label><input value={userPass} onChange={(e)=>{setUserPass(e.target.value)}} /></label>
                 </div>
                 <div className="login-item">
-                    <button onClick={() => {loginSubmit(); setStorage();}}>로그인</button>
+                    <button onClick={() => {setStorage()}}>로그인</button>
                 </div>
             </div>
             <div className="simple-login">
@@ -131,4 +147,27 @@ function RegistComponent(props)
         );
 }
 
-export { LoginComponent, RegistComponent }; 
+function LoginSucComponent(props)
+{
+
+    const userLogOut = () => {
+        localStorage.removeItem("userId");
+        window.location.href="/";
+    }
+    
+    const uid = localStorage.getItem("userId");
+
+    return(
+        <div className="uid_item">
+            <span className="uid_print">{uid} 님 환영합니다.</span>
+            <button onClick={userLogOut}>로그아웃</button>
+        </div>
+    );
+}
+
+function LoginItemComponenet(props)
+{
+    return window.localStorage.getItem("userId") ? <LoginSucComponent/> : <LoginComponent/>;
+}
+
+export { LoginComponent, RegistComponent, LoginSucComponent, LoginItemComponenet }; 
