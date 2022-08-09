@@ -132,8 +132,17 @@ function LoginSucComponent(props)
 
     return(
         <div className="uid_item">
-            <span className="uid_print">{uid} 님 환영합니다.</span>
-            <button onClick={userLogOut}>로그아웃</button>
+            <div className="user_title">
+                <span className="user_id">{uid}</span>
+                <span className="user_print"> 님 환영합니다.</span>
+            </div>
+            <div className="user_info">
+                <span className="question_count">등록한 문제 : </span>
+                <span className="book_count">등록한 문제집 : </span>
+            </div>
+            <div className="user_logout_btn">
+                <button className="logout_btn" onClick={userLogOut}>로그아웃</button>
+            </div>
         </div>
     );
 }
