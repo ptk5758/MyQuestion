@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import qs from 'qs';
 function QuestionSolve()
 {
     const { uid } = useParams();
@@ -73,10 +74,11 @@ function getQuestion(uid)
 function WriteAnswerPage()
 {
     const { uid, quid } = useParams();
-
     const [ question, setQuestion ] = useState({});
-
     const [ userAnswer, setUserAnswers ] = useState([]);
+
+    // 문제 진행도 0 = 오답, 1 = 정답, 2 = 풀기전
+    const [state, setState] = useState(2); 
 
     useEffect(()=>{        
         getQuestion(quid)
@@ -97,7 +99,7 @@ function WriteAnswerPage()
         setUserAnswers(temp);
     }
 
-    const doGrading = () => {        
+    const doGrading = (func) => {                
         let answer = [];        
         for(let i=0; i<question.answers.length; i++)
         {   
@@ -109,23 +111,36 @@ function WriteAnswerPage()
         while(cursor < question.answers.length)
         {
             if(answer[cursor] !== userAnswer[cursor])
-            {
-                console.log("오답");
+            {                
+                setState(0);
+                func(0);
                 return false;
             }
             cursor++;
         }
-
-        console.log("정답");
+        
+        setState(1);
+        func(1);
         return true;        
     }
-    
+
+    const sendLog = (_state) => {
+        axios({
+            url : `http://localhost:5000/question/solve/${quid}`,
+            method : "POST",
+            data : qs.stringify({
+                state : _state
+            })
+        })
+        .then(res => console.log(res));
+    }
 
     return(
         <div className="write-answer">        
         <button onClick={() => console.log(userAnswer)}>test1</button>        
             <div className="question-subject">
                 <span>• { question.question ? question.question : "" }</span>
+                <span>{ state == 0 ? "오답" : state == 1 ? "정답" : "" }</span>
             </div>
             <div className="answer-group">
                 {question.answers ? question.answers.map((obj, index) => {
@@ -133,7 +148,7 @@ function WriteAnswerPage()
                 }) : ""}
             </div>
             <div className="answer-submit">
-                <button onClick={() => {doGrading();}}>채첨</button>
+                <button onClick={() => {doGrading(sendLog);}}>채첨</button>
                 <button>오답노트 불러오기</button>
             </div>
         </div>
