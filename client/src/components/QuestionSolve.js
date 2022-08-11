@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import qs from 'qs';
 function QuestionSolve()
 {
     const { uid } = useParams();
@@ -61,4 +62,114 @@ function getBook(uid)
     });
 }
 
-export { QuestionSolve };
+function getQuestion(uid)
+{    
+    return axios({
+        method : "GET",
+        url : `http://localhost:5000/question/${uid}`
+    });
+
+}
+
+function WriteAnswerPage()
+{
+    const { uid, quid } = useParams();
+    const [ question, setQuestion ] = useState({});
+    const [ userAnswer, setUserAnswers ] = useState([]);
+
+    // 문제 진행도 0 = 오답, 1 = 정답, 2 = 풀기전
+    const [state, setState] = useState(2); 
+
+    useEffect(()=>{        
+        getQuestion(quid)
+        .then(res=> {            
+            setQuestion(res.data);            
+            let temp = [];
+            for(let i=0; i<res.data.answers.length; i++)
+            {
+                temp[i] = 0;
+            }        
+            setUserAnswers(temp);
+        })
+    }, []);
+
+    const setAnswer = (index, value) => {
+        let temp = [...userAnswer];
+        temp[index] = value;
+        setUserAnswers(temp);
+    }
+
+    const doGrading = (func) => {                
+        let answer = [];        
+        for(let i=0; i<question.answers.length; i++)
+        {   
+            answer[i] = question.answers[i].isAnswer;
+        }
+        console.log(answer);
+        console.log(userAnswer);
+        let cursor = 0;
+        while(cursor < question.answers.length)
+        {
+            if(answer[cursor] !== userAnswer[cursor])
+            {                
+                setState(0);
+                func(0);
+                return false;
+            }
+            cursor++;
+        }
+        
+        setState(1);
+        func(1);
+        return true;        
+    }
+
+    const sendLog = (_state) => {
+        axios({
+            url : `http://localhost:5000/question/solve/${quid}`,
+            method : "POST",
+            data : qs.stringify({
+                state : _state
+            })
+        })
+        .then(res => console.log(res));
+    }
+
+    return(
+        <div className="write-answer">        
+        <button onClick={() => console.log(userAnswer)}>test1</button>        
+            <div className="question-subject">
+                <span>• { question.question ? question.question : "" }</span>
+                <span>{ state == 0 ? "오답" : state == 1 ? "정답" : "" }</span>
+            </div>
+            <div className="answer-group">
+                {question.answers ? question.answers.map((obj, index) => {
+                    return <Answer key={index} index={index} answer={obj} setAnswer={setAnswer}/>;
+                }) : ""}
+            </div>
+            <div className="answer-submit">
+                <button onClick={() => {doGrading(sendLog);}}>채첨</button>
+                <button>오답노트 불러오기</button>
+            </div>
+        </div>
+    );
+}
+
+function Answer(props)
+{   
+    const [state, setState] = useState(0);
+
+    const setAnswer = (index) => {
+        props.setAnswer(index, state ? 0 : 1);
+        setState(state ? 0 : 1);
+    }
+
+    return(
+        <div className="answer">
+            <span><strong>{ props.index + 1 }</strong>. {props.answer.answer}</span>
+            <span className={state ? "choice-btn on" : "choice-btn"} onClick={() => setAnswer(props.index)}>선택</span>
+        </div>
+    );
+}
+
+export { QuestionSolve, WriteAnswerPage };

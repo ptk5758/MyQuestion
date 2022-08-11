@@ -272,3 +272,6 @@
 .question-solve .question-solve-item { width: 87%; margin: 1rem 0rem;}
 .question-solve .question-solve-item:last-child {}
 .question-solve .descript { font-size: 24px; font-weight: 500; }
+
+.answer .choice-btn { padding-left: 1rem;}
+.answer .choice-btn.on { color: red; font-size: 600; }
