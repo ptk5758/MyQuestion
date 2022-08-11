@@ -47,6 +47,16 @@ router.post("/login", (req,res) => {
     });
 });
 
+router.post("/name", (req, res) => {
+    const {userId} = req.body;
+    let sql = `select name from member where id="${userId}"`;
+    conn.query(sql, (error, row) => {
+        if(error)
+            console.log(error);
+        res.send(row);
+    });
+});
+
 router.post("/regist", (req,res) => {
     const { userId, userPass, userName } = req.body;
     const query = `INSERT INTO member (id, pass, name) VALUES ("${userId}", "${userPass}", "${userName}")`;

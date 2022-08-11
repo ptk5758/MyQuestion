@@ -122,18 +122,38 @@ function RegistComponent(props)
 
 function LoginSucComponent(props)
 {
+    const [userName, setUserName] = useState("");
+    const userId = localStorage.getItem("userId");
 
     const userLogOut = () => {
         localStorage.removeItem("userId");
         window.location.href="/";
     }
 
-    const uid = localStorage.getItem("userId");
+    useEffect(() => {
+        setName();
+    })
+
+    const setName = () => {
+        getName()
+        .then(res => {
+            setUserName(res.data[0].name);
+            console.log(res.data[0].name);
+        });
+    }
+
+    const getName = () => {
+        const url = "http://localhost:5000/member/name";
+        const data = {
+            userId: userId
+        }
+        return axios.post(url, qs.stringify(data));
+    }
 
     return(
         <div className="uid_item">
             <div className="user_title">
-                <span className="user_id">{uid}</span>
+                <span className="user_id">{userName}</span>
                 <span className="user_print"> 님 환영합니다.</span>
             </div>
             <div className="user_info">
