@@ -105,8 +105,6 @@ function WriteAnswerPage()
         {   
             answer[i] = question.answers[i].isAnswer;
         }
-        console.log(answer);
-        console.log(userAnswer);
         let cursor = 0;
         while(cursor < question.answers.length)
         {
@@ -136,8 +134,7 @@ function WriteAnswerPage()
     }
 
     return(
-        <div className="write-answer">        
-        <button onClick={() => console.log(userAnswer)}>test1</button>        
+        <div className="write-answer">                
             <div className="question-subject">
                 <span>• { question.question ? question.question : "" }</span>
                 <span>{ state == 0 ? "오답" : state == 1 ? "정답" : "" }</span>

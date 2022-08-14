@@ -67,8 +67,8 @@ class App extends Component
             <Route path='Question/view' element={<QuestionView/>}/>
             <Route path='QuestionInsert' element={<QuestionInsert/>} />
             <Route path='QuestionBook' element={<QuestionBook/>}/>
-            {/* <Route path='QuestionBook/:uid' element={<QuestionSolve/>}/> */}
-            <Route path='Solve/:bookId' element={<Solve/>}/>
+            <Route path='QuestionBook/:uid' element={<QuestionSolve/>}/>
+            {/* <Route path='Solve/:bookId' element={<Solve/>}/> */}
             <Route path='QuestionBook/:uid/:quid' element={<WriteAnswerPage/>}/>
             <Route path='QuestionBookInsert' element={<QuestionBookInsert openModal={this.openModal.bind(this)}/>}/>
             <Route path='QuestionView' element={<QuestionView openModal={this.openModal.bind(this)}/>}/>
