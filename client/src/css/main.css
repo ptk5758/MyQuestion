@@ -280,3 +280,5 @@
 .user_info {display: flex; flex-direction: column;}
 .question_count {padding-left:8%; padding-top: 8%;}
 .book_count {padding-left:8%; padding-top: 8%;}
+.answer .choice-btn { padding-left: 1rem;}
+.answer .choice-btn.on { color: red; font-size: 600; }
