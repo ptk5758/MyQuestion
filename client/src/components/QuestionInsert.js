@@ -23,36 +23,29 @@ class QuestionInsert extends Component
         if(params.uid != undefined){
             this.setState({uid: params.uid});
             setTimeout(() => {console.log(this.state.uid)});
-            //일단 보류 setTimeout(() => {this.loadQuestion()}, 500);
+            setTimeout(() => {this.loadQuestion()}, 500);
         }
     }
 
     //잘안됌 수정해보자(일단 보류)
     loadQuestion()
     {
-        /*Promise.all([fetch('http://localhost:5000/question/'+this.state.uid)
-        .then(res1=>console.log(res1.json())),
-        fetch('http://localhost:5000/question/'+this.state.uid+'/answer')
-        .then(res2=>console.log(res2.json()))])
-        .then(([res1, res2]) => {
-            this.setState({
-                type: res1,
-                subject: res1,
-                questions: res2
-            });
-        });*/
+        axios.get(`http://localhost:5000/question/${this.state.uid}`)
+        .then(res=>{
+            this.setState({type: res.data[0].mode, subject: res.data[0].question});
+        });
 
-        //setTimeout(() => {console.log(this.state)}, 500);
-        
-        axios.get(`http://locahost:5000/question/${this.state.uid}`)
+        axios.get(`http://localhost:5000/question/${this.state.uid}/answer`)
         .then(res=>{
             console.log(res);
-            this.setState({type: res.mode, subject: res.question});
-            axios.get(`http://localhost:5000/question/${this.state.uid}/answer`)
-            .then(res2=>{
-                this.setState({questions: res2.answer});
-                console.log(this.state);
-            });
+            //정답 수만큼 칸 추가되고 정답 적혀있어야되는데 몇개 적히다가 막힘
+            for(let i=0; i<res.data.length; i++){
+                this.addAnswer();
+                let q = this.state.questions.slice();
+                q[i].question = res.data[i].answer;
+                console.log(q[i]);
+                this.setState({questions: q[i]});
+            }
         });
     }
 

@@ -273,5 +273,12 @@
 .question-solve .question-solve-item:last-child {}
 .question-solve .descript { font-size: 24px; font-weight: 500; }
 
+/* 내정보 */
+.user_title {display: flex; justify-content: center; align-items: center;}
+.user_id {font-weight: bold; font-size: larger;}
+.user_logout_btn {display: flex; flex-direction: column; align-items: center; margin-top: 60%;}
+.user_info {display: flex; flex-direction: column;}
+.question_count {padding-left:8%; padding-top: 8%;}
+.book_count {padding-left:8%; padding-top: 8%;}
 .answer .choice-btn { padding-left: 1rem;}
 .answer .choice-btn.on { color: red; font-size: 600; }

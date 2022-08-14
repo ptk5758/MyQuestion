@@ -13,7 +13,6 @@ import Main from './components/Main';
 import { Modal } from './components/Modal';
 import { QuestionView } from './components/QuestionView';
 import { Developer } from './components/Developer';
-import SolveQuestion from './components/SolveQuestion';
 import { LoginComponent, RegistComponent } from './components/login';
 import KakaoCallback from './components/Kakaoresult';
 import { QuestionSolve, WriteAnswerPage } from './components/QuestionSolve';
